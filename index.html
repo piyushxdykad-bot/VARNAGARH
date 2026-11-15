@@ -35,7 +35,7 @@
   --rani:#B0124E; --rani-d:#7E0B37; --rani-l:#E0457F; --brass:#A57A2B; --brass-l:#DDB76C; --marigold:#E99A1E;
   --night:#170F22; --night-2:#251A36; --lamp:#FFD9A0;
   --serif:'Bodoni Moda',Didot,'Times New Roman',serif; --sans:'Josefin Sans',Futura,'Avenir Next',system-ui,sans-serif; --hi:'Tiro Devanagari Hindi',serif;
-  --e:cubic-bezier(.16,1,.3,1); --eio:cubic-bezier(.76,0,.24,1); --g:clamp(18px,4vw,72px); --hh:74px; --dock:86px;
+  --e:cubic-bezier(.16,1,.3,1); --eio:cubic-bezier(.76,0,.24,1); --g:clamp(18px,4vw,72px); --hh:74px; --dock:0px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--sand);color:var(--kohl);-webkit-text-size-adjust:100%}
@@ -856,6 +856,85 @@ html.nite .bub,html.nite .typing{background:#30254a;color:var(--kohl)}
 html.nite .wa-body{background-color:#1d1530}
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 
+/* ═══════ single page ═══════ */
+html{scroll-padding-top:var(--hh)}
+.anc{display:block;height:0}
+.hd-l{gap:6px}
+.nav{position:relative;display:flex;gap:2px}
+.nav a{position:relative;padding:10px 12px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.82;transition:opacity .3s}
+.nav a:hover,.nav a[aria-current]{opacity:1}
+.nav-ind{position:absolute;left:0;bottom:2px;height:1.5px;width:0;background:var(--rani);border-radius:2px;opacity:0;transition:transform .7s var(--e),width .7s var(--e),opacity .4s}
+.hd:not(.solid) .nav-ind{background:var(--lamp)}
+.hd-book{font-size:12px;letter-spacing:.14em;padding:10px 12px;opacity:.85;white-space:nowrap}
+.hd-book:hover{opacity:1}
+.hd-cta[aria-current]{background:var(--rani);border-color:var(--rani);color:var(--ivory)}
+.hd-prog{position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--rani);transform-origin:left;transform:scaleX(var(--sp,0));opacity:0;transition:opacity .4s}
+.hd.solid .hd-prog{opacity:1}
+.menu-b{display:none;width:44px;height:44px;margin-left:-10px;position:relative}
+.menu-b i{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .6s var(--e),top .6s var(--e)}
+.menu-b i:first-child{top:17px}.menu-b i:last-child{top:25px}
+.menu-b[aria-expanded="true"] i:first-child{top:21px;transform:rotate(45deg)}.menu-b[aria-expanded="true"] i:last-child{top:21px;transform:rotate(-45deg)}
+@media (max-width:1180px){.nav{display:none}.menu-b{display:block}.hd-book{display:none}}
+@media (max-width:820px){.hd-cta{display:inline-flex;height:36px;padding:0 14px;font-size:11px}.hd-tools{display:none}}
+@media (max-width:420px){.hd-cta{display:none}}
+.mnu{position:fixed;inset:0;z-index:69;background:var(--night);color:var(--ivory);display:flex;flex-direction:column;justify-content:space-between;padding:calc(var(--hh) + 3vh) var(--g) calc(26px + env(safe-area-inset-bottom));overflow:auto}
+.menu-l{display:flex;flex-direction:column}
+.menu-l a{display:flex;align-items:baseline;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,247,234,.1);font-family:var(--serif);font-size:clamp(30px,7vw,52px);line-height:1.05}
+.menu-l a .hi{font-size:15px;color:var(--brass-l);width:52px;flex:none}
+.menu-l a:hover{color:var(--lamp)}
+.menu-f{display:grid;gap:8px;margin-top:26px;font-size:13px;color:rgba(255,247,234,.7)}
+.menu-f p{display:flex;gap:10px;align-items:center}
+.menu-f .sun{width:20px;height:20px;color:var(--lamp)}
+.menu-f b{color:var(--lamp);font-weight:400}
+body.menu-on .hd{color:var(--ivory)!important;background:transparent!important}
+body.menu-on .hd-prog{opacity:0}
+.hd{transition:color .5s,background .5s,transform .7s var(--e)}
+.hd.tuck{transform:translateY(-100%)}
+/* book a stay */
+.spick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:clamp(30px,5vh,50px)}
+.spick button{position:relative;display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;text-align:left;padding:8px;border-radius:10px;border:1px solid var(--line-2);transition:border-color .4s,background .4s,color .4s}
+.spick button img{width:64px;height:64px;border-radius:6px;object-fit:cover}
+.spick button b{display:block;font-family:var(--serif);font-weight:400;font-size:18px;line-height:1.1}
+.spick button small{font-size:12px;color:var(--kohl-2)}
+.spick button[aria-selected="true"]{background:var(--kohl);color:var(--ivory);border-color:var(--kohl)}
+.spick button[aria-selected="true"] small{color:rgba(255,247,234,.7)}
+html.nite .spick button[aria-selected="true"]{background:var(--rani);border-color:var(--rani)}
+@media (max-width:980px){.spick{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.spick{grid-template-columns:1fr 1fr;gap:8px}.spick button{grid-template-columns:44px 1fr;gap:8px;padding:6px}.spick button img{width:44px;height:44px}.spick button b{font-size:15px}}
+#bookHost .sd-h{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4vw,68px);line-height:.95;letter-spacing:-.02em}
+#bookHost .book{top:calc(var(--hh) + 20px)}
+#bookHost.swap{opacity:0;transform:translateY(16px);transition:opacity .3s,transform .3s}
+#bookHost{transition:opacity .6s var(--e),transform .8s var(--e)}
+/* plan a wedding */
+.plan-hero{position:relative;height:min(64vh,580px);margin:calc(clamp(80px,13vh,160px)*-1) calc(var(--g)*-1) clamp(40px,7vh,70px);overflow:hidden;color:var(--ivory);display:flex;align-items:flex-end}
+.plan-hero img,.plan-hero .bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.plan-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,15,34,.35),transparent 35%,rgba(23,15,34,.82))}
+.plan-hero-tx{position:relative;z-index:2;padding:0 var(--g) clamp(30px,6vh,60px);max-width:920px}
+.plan-hero-tx .kick{color:var(--brass-l)}
+.plan-hero-tx .h2 em{color:var(--lamp)}
+.plan-hero-tx .lede{color:rgba(255,247,234,.85);margin-top:16px}
+/* enquire */
+.enq{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,110px);align-items:start;background:var(--ivory)}
+.enq-d{display:grid;gap:0;margin-top:30px;border-top:1px solid var(--line)}
+.enq-d div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.enq-d dt{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);padding-top:3px}
+.enq-d dd{font-size:15px;color:var(--kohl-2)}
+.enq-f{padding:clamp(22px,3vw,40px);display:grid;gap:14px}
+.enq-t{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--kohl-2)}
+.enq-f .btn{width:100%;margin-top:6px}
+.enq-f .note{text-align:center;font-size:12px;color:var(--mute)}
+.enq-f .seg{justify-self:start}
+@media (max-width:900px){.enq{grid-template-columns:1fr}.enq-d div{grid-template-columns:1fr;gap:4px}}
+/* confirmation */
+.okm{position:fixed;inset:0;z-index:230;display:grid;place-items:center;padding:20px;background:rgba(23,15,34,.62);backdrop-filter:blur(10px)}
+.okm-in{width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--sand);border-radius:14px;padding:clamp(28px,5vw,50px);text-align:center;box-shadow:0 50px 100px -30px rgba(0,0,0,.6)}
+.okm-in .seal2{width:96px;height:96px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#E6C277,#A57A2B 60%,#6E4F17);color:var(--night);font-family:var(--hi);font-size:28px}
+.okm-in h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,48px);line-height:1;margin:10px 0 14px}
+.okm-in h2 em{color:var(--rani)}
+.okm-in p{color:var(--kohl-2);font-size:15px}
+.okm-in .code{display:inline-block;font-family:var(--serif);font-size:22px;letter-spacing:.16em;padding:10px 22px;border:1px dashed var(--brass);margin:18px 0;border-radius:4px;color:var(--kohl)}
+.okm-in .acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+
 @media (prefers-reduced-motion:reduce){
   .t-big span{animation:none;color:var(--ivory);background:none}.phone{animation:none}.btn.rani::after{display:none}#embers{display:none}.ph-list li{opacity:1;transform:none}
 }
@@ -905,26 +984,19 @@ html.nite .wa-body{background-color:#1d1530}
 </div>
 
 <header class="hd" id="hd" inert>
-  <p class="hd-l"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" id="sunI"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor"/><g stroke="currentColor" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg><span class="where">Udaipur</span> <b class="tnum" id="clk">--:--</b></p>
-  <a class="logo" href="#" data-home aria-label="Varnagarh Palace, home"><b>VARNAGARH</b><small aria-hidden="true">वर्णगढ़ · 1781</small></a>
-  <nav class="hd-r" aria-label="Main">
-    <span class="hd-tools"><button class="tool" type="button" id="langB" aria-label="हिन्दी में देखें" title="हिन्दी / English"><span class="hi">हिं</span></button><button class="tool" type="button" id="themeB" aria-label="Switch to the palace at night" title="Day / night"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path id="themeI" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></span>
-    <a class="hd-link" href="#stay">STAY</a>
-    <a class="hd-link" href="#wed">WEDDINGS</a>
-    <a class="hd-cta" href="#wed">PLAN A WEDDING</a>
-  </nav>
+  <div class="hd-l"><button class="menu-b" type="button" id="menuB" aria-expanded="false" aria-controls="menu" aria-label="Open the menu"><i></i><i></i></button>
+    <nav class="nav" id="nav" aria-label="Main"><a href="#suites" data-spy="suites">Suites</a><a href="#weddings" data-spy="weddings">Weddings</a><a href="#dining" data-spy="dining">Dining</a><a href="#experiences" data-spy="experiences">Experiences</a><a href="#faq" data-spy="faq">Questions</a><span class="nav-ind" id="navInd" aria-hidden="true"></span></nav></div>
+  <a class="logo" href="#top" data-home aria-label="Varnagarh Palace, home"><b>VARNAGARH</b><small aria-hidden="true">वर्णगढ़ · 1781</small></a>
+  <div class="hd-r"><span class="hd-tools"><button class="tool" type="button" id="langB" aria-label="हिन्दी में देखें" title="हिन्दी / English"><span class="hi">हिं</span></button><button class="tool" type="button" id="themeB" aria-label="Switch to the palace at night" title="Day / night"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path id="themeI" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></span><a class="hd-book" href="#book">BOOK A STAY</a><a class="hd-cta" href="#enquire" data-spy="enquire">ENQUIRE</a></div>
+  <i class="hd-prog" aria-hidden="true"></i>
 </header>
+<div class="mnu" id="menu" hidden>
+  <nav class="menu-l" aria-label="Menu"><a href="#suites"><span class="hi">कक्ष</span>Suites</a><a href="#weddings"><span class="hi">विवाह</span>Weddings</a><a href="#dining"><span class="hi">रसोई</span>Dining</a><a href="#experiences"><span class="hi">अनुभव</span>Experiences</a><a href="#faq"><span class="hi">प्रश्न</span>Questions</a><a href="#book"><span class="hi">ठहरें</span>Book a stay</a><a href="#plan"><span class="hi">योजना</span>Plan a wedding</a><a href="#enquire"><span class="hi">संपर्क</span>Enquire</a></nav>
+  <div class="menu-f"><p><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor"/><g stroke="currentColor" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>It is <b class="tnum" id="clk">--:--</b> in Udaipur</p><p>On the western shore of the lake, Udaipur, Rajasthan</p></div>
+</div>
 
-<nav class="dock" id="dock" aria-label="App" inert>
-  <span class="ind" id="ind" aria-hidden="true"></span>
-  <a href="#" data-home data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 21V11a8 8 0 0116 0v10"/><path d="M9 21v-6a3 3 0 016 0v6"/></svg><span>Palace</span></a>
-  <a href="#stay" data-tab="stay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 00-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg><span>Stay</span></a>
-  <a href="#wed" data-tab="wed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M10 4l2 2 2-2"/></svg><span>Weddings</span></a>
-  <a href="#discover" data-tab="discover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3c3 4 3 9 0 18M12 3c-3 4-3 9 0 18"/><path d="M5 9c3 2 11 2 14 0"/></svg><span>Discover</span></a>
-  <a href="#my" data-tab="my"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg><span>My trip</span><i class="dot" id="myDot"></i></a>
-</nav>
 
-<main id="home-main" tabindex="-1" inert>
+<main id="home-main" tabindex="-1" inert><i id="top" class="anc"></i>
   <!-- the film: through the jharokha, from morning to lamplight -->
   <section class="film" id="film" aria-label="A film: the camera passes through a carved window into the palace courtyard, and the day turns to a lamplit night as you scroll">
     <div class="film-st">
@@ -939,7 +1011,7 @@ html.nite .wa-body{background-color:#1d1530}
       <div class="ch ch-3" id="ch3"><h2>The Zenana Chowk, <em>four in the afternoon.</em></h2><p class="s">Three storeys of arcades around one marble fountain. By day it is the quietest place in Udaipur.</p></div>
       <div class="ch ch-4" id="ch4"><p class="diyas tnum" id="diyaN">0</p><h2>diyas, <em>lit by hand.</em></h2><p class="s">Every wedding night, eleven lamplighters walk the ledges for an hour before the baraat arrives.</p></div>
       <div class="ch ch-5" id="ch5"><span class="t-hi">शुभ विवाह</span><h2>Your wedding <em>begins here.</em></h2>
-        <div class="acts"><a class="btn rani" href="#wed">Plan your wedding</a><a class="btn line" href="#stay">Book a stay</a></div></div>
+        <div class="acts"><a class="btn rani" href="#plan">Plan your wedding</a><a class="btn line" href="#suites">Book a stay</a></div></div>
       <div class="film-bar" id="fbar" aria-hidden="true"><i></i><span style="left:12%">JHAROKHA</span><span style="left:46%">COURTYARD</span><span style="left:78%">DUSK</span><span style="left:97%">NIGHT</span></div>
       <div class="tod" aria-hidden="true"><svg viewBox="0 0 120 120"><circle class="rim" cx="60" cy="60" r="58"/><path class="arc" id="todArc" d="M18 72 A44 44 0 0 1 102 72" pathLength="1" stroke-dasharray="0 1"/><circle id="todSun" r="5" fill="#FFD9A0"/><text class="t tnum" id="todT" x="60" y="70" text-anchor="middle">10:40</text><text id="todL" x="60" y="88" text-anchor="middle">MORNING</text></svg></div>
     </div>
@@ -949,14 +1021,14 @@ html.nite .wa-body{background-color:#1d1530}
   <div class="marq two" aria-hidden="true"><div class="marq-t" id="marq2"></div></div>
 
   <!-- two ways in -->
-  <section class="sec" aria-labelledby="wl-h">
+  <section class="sec" id="about" aria-labelledby="wl-h">
     <div class="welcome-top">
       <div><p class="kick"><span class="hi">स्वागत</span>WELCOME</p><h2 class="h2 split" id="wl-h">Come for a night. <em>Or for the rest of your life.</em></h2></div>
       <p class="lede rv">Varnagarh has hosted the weddings of one family, and then a great many others, for two hundred and forty years. You can book a suite for a weekend, or the whole palace for five days.</p>
     </div>
     <div class="ways">
-      <a class="way rv" href="#stay"><div class="way-img arch"><img src="img/suite-lake.webp" alt="A suite with arched windows open to the lake at sunset" loading="lazy"></div><div class="way-tx"><div><h3><span class="hi">ठहरें</span>Stay</h3><p>Forty-two suites, from the queens' wing to garden pavilions with their own pool.</p></div><span class="go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></div></a>
-      <a class="way rv" href="#wed"><div class="way-img arch"><img src="img/mandap.webp" alt="A wedding mandap of marigolds on the palace lawn at golden hour" loading="lazy"><video class="bgv" muted loop playsinline preload="none" poster="img/mandap-film.webp" data-src="media/M.mp4" aria-hidden="true"></video></div><div class="way-tx"><div><h3><span class="hi">विवाह</span>Wed</h3><p>Five venues, five ceremonies, one planner who stays with you from the first call to the vidaai.</p></div><span class="go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></div></a>
+      <a class="way rv" href="#suites"><div class="way-img arch"><img src="img/suite-lake.webp" alt="A suite with arched windows open to the lake at sunset" loading="lazy"></div><div class="way-tx"><div><h3><span class="hi">ठहरें</span>Stay</h3><p>Forty-two suites, from the queens' wing to garden pavilions with their own pool.</p></div><span class="go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></div></a>
+      <a class="way rv" href="#plan"><div class="way-img arch"><img src="img/mandap.webp" alt="A wedding mandap of marigolds on the palace lawn at golden hour" loading="lazy"><video class="bgv" muted loop playsinline preload="none" poster="img/mandap-film.webp" data-src="media/M.mp4" aria-hidden="true"></video></div><div class="way-tx"><div><h3><span class="hi">विवाह</span>Wed</h3><p>Five venues, five ceremonies, one planner who stays with you from the first call to the vidaai.</p></div><span class="go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></div></a>
     </div>
   </section>
 
@@ -971,6 +1043,7 @@ html.nite .wa-body{background-color:#1d1530}
   </section>
 
   <!-- suites corridor -->
+  <i id="suites" class="anc"></i>
   <section class="corr" id="corr" aria-labelledby="co-h">
     <div class="corr-st">
       <div class="corr-h"><div><p class="kick"><span class="hi">कक्ष</span>THE SUITES</p><h2 class="h2 split" id="co-h">Walk the <em>long gallery.</em></h2></div><p class="corr-count" aria-hidden="true"><span id="coN">01</span><i id="coBar"></i><span id="coT">04</span></p></div>
@@ -984,8 +1057,15 @@ html.nite .wa-body{background-color:#1d1530}
     <div class="pkgs" id="pkgs"></div>
   </section>
 
+  <!-- book a stay -->
+  <section class="sec booksec" id="book" aria-labelledby="bk-h">
+    <div class="welcome-top"><div><p class="kick"><span class="hi">आरक्षण</span>BOOK A STAY</p><h2 class="h2 split" id="bk-h">Choose a suite. <em>Choose your nights.</em></h2></div><p class="lede rv">Every suite comes with breakfast, a butler and the lamplighting at dusk. Prices are a night, before taxes.</p></div>
+    <div class="spick rv" id="spick" role="tablist" aria-label="Suites"></div>
+    <div id="bookHost" role="tabpanel" aria-live="polite"></div>
+  </section>
+
   <!-- venues -->
-  <section class="sec" aria-labelledby="ve-h">
+  <section class="sec" id="weddings" aria-labelledby="ve-h">
     <div class="plan-wrap">
       <div>
         <p class="kick"><span class="hi">स्थल</span>FIVE VENUES</p>
@@ -1018,15 +1098,15 @@ html.nite .wa-body{background-color:#1d1530}
     <div class="stories" id="stories"></div>
   </section>
 
-  <!-- today at the palace -->
-  <section class="sec today night" aria-labelledby="td-h">
-    <div class="today-top"><div><p class="kick"><span class="hi">आज</span>TODAY AT VARNAGARH</p><h2 class="h2 split" id="td-h" data-i18n="td">The palace keeps <em>its own hours.</em></h2></div><p class="today-now" id="todayNow" aria-live="polite"></p></div>
-    <div class="dayline" id="dayline" aria-hidden="true"><i></i><b></b></div>
-    <div class="acts-day" id="actsDay"></div>
+  <!-- plan a wedding -->
+  <section class="sec plansec" id="plan" aria-labelledby="pl-h">
+    <div class="plan-hero"><img src="img/mandap.webp" alt="" loading="lazy"><video class="bgv" muted loop playsinline preload="none" poster="img/mandap-film.webp" data-src="media/M.mp4" aria-hidden="true"></video>
+      <div class="plan-hero-tx"><p class="kick"><span class="hi">योजना</span>PLAN YOUR WEDDING</p><h2 class="h2 split" id="pl-h">Five steps. <em>One estimate.</em></h2><p class="lede rv">Pick a date, your guests and a venue for each ceremony. The estimate updates as you go, and your planner sees exactly what you chose.</p></div></div>
+    <div id="planHost"></div>
   </section>
 
   <!-- table -->
-  <section class="sec" aria-labelledby="tb-h">
+  <section class="sec" id="dining" aria-labelledby="tb-h">
     <div class="table">
       <figure class="table-img reveal-arch"><img src="img/thali.webp" alt="A royal Rajasthani thali on a brass plate on the terrace at sunset" loading="lazy"></figure>
       <div><p class="kick"><span class="hi">रसोई</span>THE ROYAL KITCHEN</p><h2 class="h2 split" id="tb-h">Recipes from <em>the old kitchens.</em></h2>
@@ -1042,34 +1122,46 @@ html.nite .wa-body{background-color:#1d1530}
   </section>
 
   <!-- experiences -->
-  <section class="sec" aria-labelledby="ex-h" style="padding-top:0">
-    <div class="welcome-top"><div><p class="kick"><span class="hi">अनुभव</span>BETWEEN CEREMONIES</p><h2 class="h2 split" id="ex-h">Days that <em>belong to you.</em></h2></div><a class="btn line sm rv" href="#discover" style="justify-self:start">See every experience</a></div>
+  <section class="sec" id="experiences" aria-labelledby="ex-h" style="padding-top:0">
+    <div class="welcome-top"><div><p class="kick"><span class="hi">अनुभव</span>BETWEEN CEREMONIES</p><h2 class="h2 split" id="ex-h">Days that <em>belong to you.</em></h2></div><p class="lede rv">Tap any of them and we will hold a time for you.</p></div>
     <div class="exp">
-      <a class="xp rv" href="#discover"><img src="img/boat.webp" alt="" loading="lazy"><div><h3>Sunset on the lake</h3><p>A boat with a pink canopy, and nobody else</p></div></a>
-      <a class="xp rv" href="#discover"><img src="img/gate.webp" alt="" loading="lazy"><div><h3>The 1936 Rolls</h3><p>The baraat's ride to the gate</p></div></a>
-      <a class="xp rv" href="#discover"><img src="img/spa.webp" alt="" loading="lazy"><div><h3>The hammam</h3><p>Rose water and sandstone</p></div></a>
-      <a class="xp rv" href="#discover"><img src="img/aerial.webp" alt="" loading="lazy"><div><h3>The whole palace</h3><p>For families who bring everyone</p></div></a>
+      <a class="xp rv" href="#enquire" data-ask><img src="img/boat.webp" alt="" loading="lazy"><div><h3>Sunset on the lake</h3><p>A boat with a pink canopy, and nobody else</p></div></a>
+      <a class="xp rv" href="#enquire" data-ask><img src="img/gate.webp" alt="" loading="lazy"><div><h3>The 1936 Rolls</h3><p>The baraat's ride to the gate</p></div></a>
+      <a class="xp rv" href="#enquire" data-ask><img src="img/spa.webp" alt="" loading="lazy"><div><h3>The hammam</h3><p>Rose water and sandstone</p></div></a>
+      <a class="xp rv" href="#enquire" data-ask><img src="img/aerial.webp" alt="" loading="lazy"><div><h3>The whole palace</h3><p>For families who bring everyone</p></div></a>
     </div>
   </section>
 
-  <!-- app teaser -->
-  <section class="sec teaser" aria-labelledby="ap-h">
-    <div class="phone rv" aria-hidden="true"><div class="phone-in">
-      <div class="ph-top"><img src="img/courtyard-night.webp" alt=""><div class="ph-tx"><small>YOUR WEDDING</small><b>Ananya &amp; Kabir</b><div class="ph-cd"><span class="tnum" id="phD">112</span><small>DAYS</small></div></div></div>
-      <ul class="ph-list">
-        <li style="--c:#2E8B57"><i></i><div><b>Mehendi</b><br><span>Chandni Terrace</span></div><span>14 Feb</span></li>
-        <li style="--c:#E99A1E"><i></i><div><b>Haldi</b><br><span>Zenana Chowk</span></div><span>15 Feb</span></li>
-        <li style="--c:#B0124E"><i></i><div><b>Sangeet</b><br><span>Sheesh Mahal</span></div><span>15 Feb</span></li>
-        <li style="--c:#A57A2B"><i></i><div><b>Pheras</b><br><span>Jal Ghat</span></div><span>16 Feb</span></li>
-      </ul>
-    </div></div>
-    <div><p class="kick"><span class="hi">आपका विवाह</span>YOUR WEDDING, IN YOUR POCKET</p><h2 class="h2 split" id="ap-h">The whole plan, <em>on one screen.</em></h2>
-      <p class="lede rv" style="margin:22px 0 30px">Build your wedding here and it stays with you: the countdown, every ceremony and its venue, your rooms, and the checklist your planner shares with you.</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap" class="rv"><a class="btn rani" href="#wed">Start planning</a><a class="btn line" href="#my">Open My trip</a></div></div>
+  <!-- today at the palace -->
+  <section class="sec today night" aria-labelledby="td-h">
+    <div class="today-top"><div><p class="kick"><span class="hi">आज</span>TODAY AT VARNAGARH</p><h2 class="h2 split" id="td-h" data-i18n="td">The palace keeps <em>its own hours.</em></h2></div><p class="today-now" id="todayNow" aria-live="polite"></p></div>
+    <div class="dayline" id="dayline" aria-hidden="true"><i></i><b></b></div>
+    <div class="acts-day" id="actsDay"></div>
+  </section>
+
+  <!-- enquire -->
+  <section class="sec enq" id="enquire" aria-labelledby="eq-h">
+    <div class="enq-l"><p class="kick"><span class="hi">संपर्क</span>ENQUIRE</p><h2 class="h2 split" id="eq-h">Write to the palace. <em>We answer the same day.</em></h2>
+      <dl class="enq-d rv">
+        <div><dt>Where</dt><dd>On the western shore of the lake, Udaipur, Rajasthan</dd></div>
+        <div><dt>Getting here</dt><dd>Udaipur airport is about forty minutes by car. We meet every flight.</dd></div>
+        <div><dt>Weddings</dt><dd>Meera Rathore, wedding planner. Replies within the hour, 8 am to 10 pm.</dd></div>
+        <div><dt>Reservations</dt><dd class="sample">Concept site: the hotel's phone and email go here.</dd></div>
+      </dl>
+      <button class="btn line rv" type="button" data-wa style="margin-top:26px">Chat on WhatsApp</button>
+    </div>
+    <form class="card enq-f rv" id="qF" novalidate>
+      <p class="enq-t">I am planning</p>
+      <div class="seg" role="radiogroup" aria-label="I am planning"><label><input type="radio" name="qk" value="stay" checked><span>A stay</span></label><label><input type="radio" name="qk" value="wedding"><span>A wedding</span></label><label><input type="radio" name="qk" value="event"><span>An event</span></label></div>
+      <div class="duo"><div class="field"><label for="qN">Your name</label><input id="qN" autocomplete="name" required><span class="err">Please add your name</span></div><div class="field"><label for="qE">Email</label><input id="qE" type="email" autocomplete="email" required><span class="err">Please add a valid email</span></div></div>
+      <div class="duo"><div class="field"><label for="qD">Arriving around</label><input id="qD" type="date"></div><div class="field"><label for="qG">Guests</label><input id="qG" type="number" min="1" max="900" value="2" inputmode="numeric"></div></div>
+      <div class="field"><label for="qM">Message</label><textarea id="qM" placeholder="Tell us what you have in mind."></textarea></div>
+      <button class="btn rani" type="submit">Send enquiry</button><p class="note">Concept site: nothing is sent or charged.</p>
+    </form>
   </section>
 
   <!-- press + faq -->
-  <section class="sec" aria-labelledby="fq-h">
+  <section class="sec" id="faq" aria-labelledby="fq-h">
     <div class="press rv" aria-label="Press and awards, sample layout"><span>Publication</span><span>Travel award</span><span>Wedding magazine</span><span>Heritage listing</span><span>Design award</span></div>
     <p class="sample" style="text-align:center;margin:-70px 0 70px">Sample layout: the hotel's real press and awards go here.</p>
     <div class="faq2"><div><p class="kick"><span class="hi">प्रश्न</span>BEFORE YOU ASK</p><h2 class="h2 split" id="fq-h" data-i18n="fq">Questions every <em>family asks.</em></h2><p class="lede rv" style="margin-top:20px">Anything else, ask Meera on WhatsApp. She answers within the hour, from 8 am to 10 pm.</p></div><div id="faqL"></div></div>
@@ -1078,25 +1170,17 @@ html.nite .wa-body{background-color:#1d1530}
   <!-- coda -->
   <section class="coda night" aria-labelledby="cd-h">
     <img src="img/courtyard-night.webp" alt="" loading="lazy" id="codaImg"><video class="bgv" id="codaV" muted loop playsinline preload="none" poster="img/chowk-film.webp" data-src="media/N.mp4" aria-hidden="true"></video><canvas id="petals" aria-hidden="true"></canvas>
-    <div class="coda-tx"><span class="t-hi">शुभ रात्रि</span><h2 id="cd-h" data-i18n="cd">The lamps are lit. <em>We are waiting.</em></h2><div class="acts"><button class="cine-btn" type="button" data-cine style="margin:0"><i aria-hidden="true"></i><span>PLAY THE FILM</span></button><a class="btn rani" href="#wed">Plan your wedding</a><a class="btn line" href="#stay">Book a stay</a></div></div>
+    <div class="coda-tx"><span class="t-hi">शुभ रात्रि</span><h2 id="cd-h" data-i18n="cd">The lamps are lit. <em>We are waiting.</em></h2><div class="acts"><button class="cine-btn" type="button" data-cine style="margin:0"><i aria-hidden="true"></i><span>PLAY THE FILM</span></button><a class="btn rani" href="#plan">Plan your wedding</a><a class="btn line" href="#suites">Book a stay</a></div></div>
   </section>
   <footer class="ft">
     <div class="ft-top"><div><h3>Varnagarh Palace</h3><p>On the western shore of the lake, Udaipur, Rajasthan</p><p>It is <span class="tnum" id="ftT">--:--</span> at the palace.</p></div>
-      <nav class="ft-links" aria-label="Footer"><a href="#stay">Suites</a><a href="#wed">Weddings</a><a href="#discover">Dining and experiences</a><a href="#my">My trip</a></nav></div>
+      <nav class="ft-links" aria-label="Footer"><a href="#suites">Suites</a><a href="#book">Book a stay</a><a href="#weddings">Weddings</a><a href="#plan">Plan a wedding</a><a href="#dining">Dining</a><a href="#experiences">Experiences</a><a href="#faq">Questions</a><a href="#enquire">Enquire</a></nav></div>
     <p class="ft-word" aria-hidden="true"><span class="hi">वर्णगढ़</span>VARNAGARH</p>
     <div class="ft-base"><span>Concept site. Varnagarh is a fictional palace hotel; prices, dates and bookings are illustrative and nothing is charged.</span><span>Images and film generated for this concept.</span></div>
   </footer>
 </main>
 
-<section class="view" id="v-stay" aria-label="Suites" tabindex="-1"><div class="view-in"></div></section>
-<section class="view" id="v-suite" aria-label="Suite" tabindex="-1"><div class="view-in"></div></section>
-<section class="view" id="v-wed" aria-label="Plan your wedding" tabindex="-1"><div class="view-in"></div></section>
-<section class="view" id="v-discover" aria-label="Discover" tabindex="-1"><div class="view-in"></div></section>
-<section class="view" id="v-my" aria-label="My trip" tabindex="-1"><div class="view-in"></div></section>
-<section class="view" id="v-done" aria-label="Confirmed" tabindex="-1"><div class="view-in"></div></section>
 <canvas class="burst" id="burst" aria-hidden="true"></canvas>
-<section class="view" id="v-invite" aria-label="Wedding website" tabindex="-1"><div class="view-in"></div></section>
-<section class="view" id="v-rooms" aria-label="Rooms for your guests" tabindex="-1"><div class="view-in"></div></section>
 <div class="look" id="look" role="dialog" aria-modal="true" aria-label="Look around the venues" hidden>
   <div class="look-stage" id="lookStage"><img id="lookImg" alt="" draggable="false"></div>
   <div class="look-ui"><p class="look-t"><span class="hi" id="lookH"></span><b id="lookT"></b></p><p class="look-hint" id="lookHint" aria-hidden="true"><i></i>DRAG TO LOOK AROUND</p>
@@ -1106,8 +1190,9 @@ html.nite .wa-body{background-color:#1d1530}
 </div>
 <div class="wa" id="wa"><div class="wa-p" id="waP" role="dialog" aria-label="Chat with the wedding planner"><div class="wa-h"><span class="av">M</span><div><b>Meera Rathore</b><small>Wedding planner · usually replies within the hour</small></div></div><div class="wa-body" id="waBody"></div><div class="wa-q" id="waQ"></div><p class="wa-n">Concept: these open WhatsApp with your message ready. The hotel's own number goes here.</p></div>
   <button class="wa-b" type="button" id="waB" aria-expanded="false" aria-controls="waP" aria-label="Chat with our planner on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg><i class="dot"></i></button></div>
+<div class="okm" id="okm" role="dialog" aria-modal="true" aria-labelledby="okT" hidden><div class="okm-in" id="okIn"></div></div>
 <p class="cine-chip" id="cineChip" aria-live="polite">Playing the film · scroll or press Esc to stop</p>
-<a class="pill" id="pill" href="#wed" aria-label="Check wedding dates"><span class="live" aria-hidden="true"></span><p><b id="pillN">Wedding season</b>dates still open, Nov to Feb</p><span class="btn rani">Check dates</span></a>
+<a class="pill" id="pill" href="#plan" aria-label="Check wedding dates"><span class="live" aria-hidden="true"></span><p><b id="pillN">Wedding season</b>dates still open, Nov to Feb</p><span class="btn rani">Check dates</span></a>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 (()=>{
@@ -1134,7 +1219,7 @@ const KEY='varnagarh.v1';
 let S; try{ S=JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ S={}; }
 S.stays=S.stays||[]; S.plan=S.plan||[]; S.checks=S.checks||{};
 const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} syncDot(); };
-function syncDot(){ $('#myDot').classList.toggle('on',!!(S.wedding||S.stays.length||S.plan.length)); }
+function syncDot(){}
 
 /* ───── ambient films: load when near, play only while seen ───── */
 const vio=new IntersectionObserver(es=>es.forEach(e=>{ const v=e.target; if(e.isIntersecting){ if(!v.src&&v.dataset.src){ v.src=v.dataset.src; v.addEventListener('playing',()=>v.classList.add('on'),{once:true}); } if(!RM){ const p=v.play(); p&&p.catch(()=>{}); } else v.classList.add('on'); } else if(v.src) v.pause(); }),{rootMargin:'200px 0px'});
@@ -1225,7 +1310,7 @@ const fontsP=document.fonts?document.fonts.ready:Promise.resolve();
 Promise.all([filmReadyP,fontsP,new Promise(r=>setTimeout(r,RM?200:1600))]).then(()=>{ ldSet(1); setTimeout(openPalace,RM?0:650); });
 setTimeout(()=>{ filmReady(); },12000);
 function openPalace(){ const L=$('#loader');
-  $$('#hd,#dock,#home-main').forEach(e=>e.removeAttribute('inert')); document.body.classList.remove('locked');
+  $$('#hd,#home-main').forEach(e=>e.removeAttribute('inert')); document.body.classList.remove('locked');
   route(true);
   if(RM){ L.classList.add('gone'); return; }
   const D=$('#doors'), [dl,dr]=$$('.door',D), se=$('#seal'), lb=$('#doorL'); lb.textContent='Padharo · Welcome'; $('span',se).textContent='व';
@@ -1336,10 +1421,8 @@ const hd=$('#hd');
 function hdState(){ const dark=!current&&($('#film').getBoundingClientRect().bottom>hd.offsetHeight); hd.classList.toggle('solid',!!current||!dark); }
 let sq=false; function onScroll(){ if(sq) return; sq=true; requestAnimationFrame(()=>{ sq=false; if(current) return; filmFrame(); corrFrame(); hdState();
   const ci=$('#codaImg'), b=ci.parentElement.getBoundingClientRect(); if(b.bottom>0&&b.top<innerHeight){ const py=(((b.top+b.height/2)/innerHeight-.5)*-8).toFixed(2)+'%'; ci.style.setProperty('--py',py); $('#codaV').style.setProperty('--py',py); }
-  $('#phD').textContent=String(112-Math.round(clamp(1-($('.teaser').getBoundingClientRect().top/innerHeight))*12));
   hd.style.setProperty('--sp',clamp(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)).toFixed(4));
-  const fb=film.getBoundingClientRect().bottom, cb=$('.coda').getBoundingClientRect().top; $('#pill').classList.toggle('on',fb<innerHeight*.4&&cb>innerHeight*.5);
-  const ph=$('.phone'), pb=ph.getBoundingClientRect(); if(pb.bottom>0&&pb.top<innerHeight&&!RM) ph.style.transform=`rotate(${(((pb.top+pb.height/2)/innerHeight-.5)*-12-2).toFixed(2)}deg)`; }); }
+  const fb=film.getBoundingClientRect().bottom, cb=$('.coda').getBoundingClientRect().top; $('#pill').classList.toggle('on',fb<innerHeight*.4&&cb>innerHeight*.5); }); }
 addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',()=>{ corrSize(); onScroll(); }); addEventListener('load',()=>{ corrSize(); onScroll(); });
 
 /* ───── cursor + magnetic ───── */
@@ -1356,7 +1439,7 @@ if(FINE&&!RM){ const c=$('#cur'), r=$('#curR'), rl=$('span',r); let x=-99,y=-99,
 let toT; function toast(html){ const t=$("#toast"); t.innerHTML=html; t.classList.add("on"); clearTimeout(toT); toT=setTimeout(()=>t.classList.remove('on'),3800); }
 
 /* ═════════ app views ═════════ */
-const back=(h,l)=>`<a class="back" href="${h}">${svgUse('i-back')}${esc(l)}</a>`;
+const back=()=>'';
 const V={};
 const viewName={stay:['The suites','क'],suite:['Your suite','क'],wed:['Your wedding','वि'],discover:['Discover','अ'],my:['My trip','मे'],done:['Confirmed','शु'],invite:['Your wedding website','नि'],rooms:['Rooms for your guests','क'],home:['The palace','व']};
 
@@ -1376,7 +1459,7 @@ V.suite=arg=>{ const [id,pk]=String(arg||'').split('/'); const s=byS(id); if(!s)
    <div id="bSum"></div>
    <form id="bForm" novalidate hidden><div class="field" style="margin-top:14px"><label for="bN">Name</label><input id="bN" autocomplete="name" required><span class="err">Please add your name</span></div><div class="field" style="margin-top:10px"><label for="bE">Email</label><input id="bE" type="email" autocomplete="email" required><span class="err">Please add a valid email</span></div></form>
    <button class="btn rani" type="button" id="bGo">Reserve these dates</button><p class="note">Nothing is charged. You pay at the palace.</p></div></div></div>`; };
-function calHTML(mode){ const m=B.month, y=m.getFullYear(), mo=m.getMonth(), first=(new Date(y,mo,1).getDay()+6)%7, days=new Date(y,mo+1,0).getDate(), today=new Date(); today.setHours(0,0,0,0);
+function calHTML(mode){ const m=mode==='single'?W8.month:B.month, y=m.getFullYear(), mo=m.getMonth(), first=(new Date(y,mo,1).getDay()+6)%7, days=new Date(y,mo+1,0).getDate(), today=new Date(); today.setHours(0,0,0,0);
   let g=['M','T','W','T','F','S','S'].map(d=>`<span class="dw">${d}</span>`).join('')+'<span></span>'.repeat(first);
   for(let d=1;d<=days;d++){ const dt=new Date(y,mo,d), past=dt<today, season=[10,11,0,1].includes(mo), cls=[];
     if(mode==='range'){ if(B.from&&+dt===+B.from) cls.push('s'); if(B.to&&+dt===+B.to) cls.push('e'); if(B.from&&B.to&&dt>B.from&&dt<B.to) cls.push('in'); }
@@ -1450,10 +1533,9 @@ function wire(v,host,sub){
     $('#bGo',host).addEventListener('click',()=>{ const f=$('#bForm',host); if(f.hidden){ f.hidden=false; $('#bGo',host).textContent='Confirm reservation'; $('#bN',host).focus(); return; }
       const n=$('#bN',host), em=$('#bE',host); let ok=true; [[n,n.value.trim().length>1],[em,/^\S+@\S+\.\S+$/.test(em.value)]].forEach(([i,g])=>{ i.parentElement.toggleAttribute('data-err',!g); if(!g&&ok){ i.focus(); ok=false; } }); if(!ok) return;
       const c=code('VG'); S.stays.push({code:c,pkg:B.pkg||'',suite:B.id,from:iso(B.from),to:iso(B.to),guests:B.guests,total:B.total,n:B.n,name:n.value.trim(),email:em.value.trim()}); save(); go('#done/'+c); }); }
-  if(v==='wed'){ B.month=W8.month; const wc=$('#wcal',host), draw=()=>{ wc.innerHTML=calHTML('single'); }; draw(); const evs=$('#evs',host), dEv=()=>{ evs.innerHTML=evHTML(); }; dEv(); wedSum();
+  if(v==='wed'){ const wc=$('#wcal',host), draw=()=>{ wc.innerHTML=calHTML('single'); }; draw(); const evs=$('#evs',host), dEv=()=>{ evs.innerHTML=evHTML(); }; dEv(); wedSum();
     const persist=()=>{ S.draft={date:W8.date?iso(W8.date):null,guests:W8.guests,palette:W8.palette,ev:W8.ev,names:$('#wA',host).value,email:$('#wE',host).value,note:$('#wNote',host).value}; save(); };
-    wc.addEventListener('click',e=>{ const m=e.target.closest('[data-m]'); if(m){ W8.month=new Date(W8.month.getFullYear(),W8.month.getMonth()+ +m.dataset.m,1); B.month=W8.month; draw(); return; } const d=e.target.closest('[data-d]'); if(!d) return; W8.date=fromIso(d.dataset.d); draw(); persist(); });
-    B.month=W8.month; draw();
+    wc.addEventListener('click',e=>{ const m=e.target.closest('[data-m]'); if(m){ W8.month=new Date(W8.month.getFullYear(),W8.month.getMonth()+ +m.dataset.m,1); draw(); return; } const d=e.target.closest('[data-d]'); if(!d) return; W8.date=fromIso(d.dataset.d); draw(); persist(); });
     const gR=$('#gR',host), setR=()=>{ gR.style.setProperty('--v',((gR.value-40)/760*100)+'%'); }; setR();
     gR.addEventListener('input',()=>{ W8.guests=+gR.value; $('#gv',host).textContent=W8.guests; setR(); dEv(); wedSum(); persist(); });
     evs.addEventListener('change',e=>{ const row=e.target.closest('.ev'); const ev=W8.ev.find(x=>x.k===row.dataset.k); if(e.target.type==='checkbox') ev.on=e.target.checked; else ev.venue=e.target.value; dEv(); wedSum(); persist(); });
@@ -1480,17 +1562,73 @@ function wire(v,host,sub){
 function enter(root){ lazyVid(root); const els=$$('[data-in]',root); if(RM) return; els.forEach((el,i)=>{ el.animate([{opacity:0,transform:'translateY(36px)'},{opacity:1,transform:'none'}],{duration:1000,delay:180+Math.min(i,10)*70,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}); const im=$('.arch img,figure img',el); im&&im.animate([{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:1800,delay:180+Math.min(i,10)*70,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}); });
   const hero=$('.v-hero',root); if(hero){ $('img',hero).animate([{transform:'scale(1.3)'},{transform:'scale(1)'}],{duration:2200,easing:'cubic-bezier(.16,1,.3,1)'}); $$('.v-hero-tx > *',hero).forEach((e,i)=>e.animate([{opacity:0,transform:'translateY(40px)'},{opacity:1,transform:'none'}],{duration:1200,delay:300+i*120,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'})); } }
 
-/* ───── router with palace doors ───── */
-const VIEWS=['stay','suite','wed','discover','my','done','invite','rooms']; const TAB={stay:'stay',suite:'stay',wed:'wed',discover:'discover',my:'my',done:'my',invite:'my',rooms:'my'};
-let current=null, sub=null, homeY=0, busy=false;
-function parse(){ const h=decodeURIComponent(location.hash.slice(1)); const [v,...r]=h.split('/'); return VIEWS.includes(v)?[v,r.join('/')]:[null,null]; }
-function render(v,s){ const host=$('#v-'+v+' .view-in'); host.innerHTML=V[v](s); const fresh=host.cloneNode(true); host.replaceWith(fresh); wire(v,fresh,s); return fresh; }
-function show(v,s,first){ const was=current; burstF&&(burstF.stop(),burstF=null);
-  if(!was&&v) homeY=scrollY;
-  $$('.view').forEach(x=>x.classList.remove('on'));
-  if(v){ const host=render(v,s); const el=$('#v-'+v); el.classList.add('on'); el.scrollTop=0; $('#home-main').setAttribute('inert',''); enter(host); el.focus({preventScroll:true}); }
-  else { $('#home-main').removeAttribute('inert'); if(was) requestAnimationFrame(()=>{ scrollTo(0,homeY); onScroll(); }); }
-  current=v; sub=s; document.body.classList.toggle('locked',!!v); hdState(); dockSync(); document.title=v?`${viewName[v][0]} · Varnagarh`:'Varnagarh Palace, Udaipur'; }
+/* ───── one long page: links glide to their section ───── */
+let current=null; function show(){} function dockSync(){}
+const MAP={wed:'plan',stay:'suites',discover:'experiences',my:'enquire'};
+let glideRaf=0; function glide(y){ cancelAnimationFrame(glideRaf); const y0=scrollY, d=y-y0; if(RM||Math.abs(d)<4){ scrollTo(0,y); return; }
+  const dur=clamp(Math.abs(d)/4,700,1700), t0=performance.now(); const stopG=()=>{ cancelAnimationFrame(glideRaf); removeEventListener('wheel',stopG); removeEventListener('touchstart',stopG); };
+  addEventListener('wheel',stopG,{passive:true}); addEventListener('touchstart',stopG,{passive:true});
+  (function f(n){ const k=clamp((n-t0)/dur); scrollTo(0,y0+d*eio(k)); if(k<1) glideRaf=requestAnimationFrame(f); else stopG(); })(t0); }
+function sectionY(el){ return el.getBoundingClientRect().top+scrollY-(el.id==='top'?0:hd.offsetHeight-1); }
+function nav(h,instant){ h=decodeURIComponent(h||'').replace(/^#/,''); if(!h||h==='top'){ glide(0); return true; }
+  let [k,...r]=h.split('/'); if(k==='done'){ confirmFor(r[0]); return true; }
+  if(k==='suite'){ pickSuite(r[0],r[1]||''); k='book'; }
+  k=MAP[k]||k; const el=document.getElementById(k); if(!el) return false;
+  menu(false); const y=sectionY(el); instant?scrollTo(0,y):glide(y); history.replaceState(null,'','#'+k); return true; }
+function go(h){ nav(h); }
+function route(first){ if(location.hash.length>1) setTimeout(()=>nav(location.hash,true),first&&!RM?60:0); }
+document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#"]'); if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey) return; const h=a.getAttribute('href');
+  if(a.hasAttribute('data-ask')){ const t=$('h3',a).textContent; $('input[name="qk"][value="stay"]').checked=true; $('#qM').value=`We'd like to arrange "${t}" during our stay.`; }
+  if(nav(h)) e.preventDefault(); });
+addEventListener('hashchange',()=>nav(location.hash));
+
+/* the menu, for smaller screens */
+function menu(o){ const m=$('#menu'), b=$('#menuB'); if(o===!m.hidden) return; b.setAttribute('aria-expanded',o); b.setAttribute('aria-label',o?'Close the menu':'Open the menu'); document.body.classList.toggle('menu-on',o);
+  if(o){ m.hidden=false; document.body.classList.add('locked'); if(!RM){ m.animate([{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0 0)'}],{duration:800,easing:'cubic-bezier(.76,0,.24,1)'}); $$('.menu-l a, .menu-f p',m).forEach((a,i)=>a.animate([{opacity:0,transform:'translateY(40px)'},{opacity:1,transform:'none'}],{duration:900,delay:200+i*55,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'})); } }
+  else { document.body.classList.remove('locked'); const fin=()=>{ m.hidden=true; }; RM?fin():m.animate([{clipPath:'inset(0 0 0 0)'},{clipPath:'inset(0 0 100% 0)'}],{duration:600,easing:'cubic-bezier(.76,0,.24,1)'}).onfinish=fin; } }
+$('#menuB').addEventListener('click',()=>menu($('#menu').hidden));
+addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(!$('#menu').hidden) menu(false); if(!$('#okm').hidden) closeOk(); } });
+
+/* the header knows where you are */
+const SPY=$$('[data-spy]').map(a=>[a,document.getElementById(a.dataset.spy)]);
+let lastY=0; function spy(){ const line=innerHeight*.38; let on=null; SPY.forEach(([a,el])=>{ if(el.getBoundingClientRect().top<line) on=a; });
+  if(on&&on.dataset.spy!=='enquire'){ const ec=$('#enquire').getBoundingClientRect(); if(ec.top<line) on=$('.hd-cta'); }
+  SPY.forEach(([a])=>a===on?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
+  const ind=$('#navInd'); if(on&&on.closest('#nav')){ ind.style.width=(on.offsetWidth-24)+'px'; ind.style.transform=`translateX(${on.offsetLeft+12}px)`; ind.style.opacity=1; } else ind.style.opacity=0;
+  const y=scrollY, inFilm=film.getBoundingClientRect().bottom>0; hd.classList.toggle('tuck',!inFilm&&y>lastY+4&&y>innerHeight&&$('#menu').hidden&&!document.body.classList.contains('cinema')); if(y<lastY-4||inFilm) hd.classList.remove('tuck'); lastY=y; }
+let spq=false; addEventListener('scroll',()=>{ if(spq) return; spq=true; requestAnimationFrame(()=>{ spq=false; spy(); }); },{passive:true});
+
+/* book a stay, inline */
+$('#spick').innerHTML=SUITES.map((s,i)=>`<button type="button" role="tab" data-s="${s.id}" aria-selected="${!i}" aria-controls="bookHost"><img src="img/${s.img}.webp" alt=""><span><b>${esc(s.name)}</b><small>${inr(s.price)} a night</small></span></button>`).join('');
+function mount(id,v,arg){ const old=$('#'+id), fresh=old.cloneNode(false); fresh.innerHTML=V[v](arg); old.replaceWith(fresh); wire(v,fresh,arg); lazyVid(fresh); return fresh; }
+function pickSuite(id,pk,anim){ if(!byS(id)) id=SUITES[0].id; $$('#spick button').forEach(b=>b.setAttribute('aria-selected',b.dataset.s===id));
+  const put=()=>{ const h=mount('bookHost','suite',id+'/'+(pk||'')); $$('h1',h).forEach(x=>{ const n=document.createElement('h3'); n.className='sd-h'; n.innerHTML=x.innerHTML; x.replaceWith(n); }); if(anim) enter(h); };
+  if(anim&&!RM){ const h=$('#bookHost'); h.classList.add('swap'); setTimeout(put,280); } else put(); }
+$('#spick').addEventListener('click',e=>{ const b=e.target.closest('[data-s]'); if(b&&b.getAttribute('aria-selected')!=='true') pickSuite(b.dataset.s,'',true); });
+pickSuite(SUITES[0].id,'');
+/* the wedding planner, inline */
+mount('planHost','wed'); (function(){ const h=$('#planHost'); const vh=$('.v-hero',h); vh&&vh.remove(); })();
+
+/* confirmations */
+let okLast=null;
+function confirmFor(c){ const w=S.wedding&&S.wedding.code===c?S.wedding:null, b=S.stays.find(x=>x.code===c), q=(S.enq||[]).find(x=>x.code===c); if(!w&&!b&&!q) return;
+  const m=$('#okm'); okLast=document.activeElement;
+  $('#okIn').innerHTML=`<div class="seal2" aria-hidden="true">शुभ</div><p class="kick" style="justify-content:center">${w?'YOUR WEDDING IS WITH US':b?'YOUR SUITE IS HELD':'YOUR ENQUIRY IS WITH US'}</p>
+   <h2 id="okT">${w?`Congratulations, <em>${esc(w.names)}.</em>`:b?`See you on <em>${fmtD(fromIso(b.from),{day:'numeric',month:'long'})}.</em>`:`Thank you, <em>${esc(q.name.split(' ')[0])}.</em>`}</h2>
+   <p>${w?`Meera Rathore, your planner, will write to ${esc(w.email)} within a day with a first proposal for ${fmtD(fromIso(w.date),{day:'numeric',month:'long',year:'numeric'})}.`:b?`${esc(byS(b.suite).name)}, ${b.n} night${b.n>1?'s':''} for ${b.guests}. The details are on their way to ${esc(b.email)}.`:`We will reply to ${esc(q.email)} today.`}</p>
+   <p class="code tnum">${esc(c)}</p><p style="font-size:12.5px;color:var(--mute)">Concept site: nothing is sent or charged.</p><div class="acts"><button class="btn rani" type="button" id="okX">Done</button></div>`;
+  m.hidden=false; document.body.classList.add('locked'); $('#okX').addEventListener('click',closeOk); m.onclick=e=>{ if(e.target===m) closeOk(); }; $('#okX').focus();
+  if(!RM){ m.animate([{opacity:0},{opacity:1}],{duration:400}); $('#okIn').animate([{opacity:0,transform:'translateY(40px) scale(.96)'},{opacity:1,transform:'none'}],{duration:900,easing:'cubic-bezier(.16,1,.3,1)'}); $('.seal2',m).animate([{transform:'scale(0) rotate(-120deg)'},{transform:'none'}],{duration:1000,delay:200,easing:'cubic-bezier(.34,1.56,.64,1)',fill:'backwards'}); }
+  celebrate(); }
+function closeOk(){ const m=$('#okm'); const fin=()=>{ m.hidden=true; document.body.classList.remove('locked'); okLast&&okLast.focus&&okLast.focus({preventScroll:true}); }; RM?fin():m.animate([{opacity:1},{opacity:0}],{duration:300}).onfinish=fin; }
+$('#okm').addEventListener('keydown',e=>{ if(e.key==='Tab'){ e.preventDefault(); $('#okX').focus(); } });
+
+/* the enquiry form */
+$('#qF').addEventListener('submit',e=>{ e.preventDefault(); const n=$('#qN'), em=$('#qE'); let ok=true;
+  [[n,n.value.trim().length>1],[em,/^\S+@\S+\.\S+$/.test(em.value)]].forEach(([i,g])=>{ i.parentElement.toggleAttribute('data-err',!g); if(!g&&ok){ i.focus(); ok=false; } }); if(!ok) return;
+  const c=code('VE'); S.enq=S.enq||[]; S.enq.push({code:c,name:n.value.trim(),email:em.value.trim(),kind:$('input[name="qk"]:checked').value,date:$('#qD').value,guests:+$('#qG').value||0,msg:$('#qM').value}); save(); e.target.reset(); confirmFor(c); });
+$('#qD').min=iso(new Date());
+document.addEventListener('click',e=>{ if(e.target.closest('[data-wa]')){ e.stopPropagation(); const W=$('#wa'); if(!W.classList.contains('open')) $('#waB').click(); } });
 function doors(label,seal,mid){ const D=$('#doors'), [l,r]=$$('.door',D), se=$('#seal'), lb=$('#doorL');
   if(RM){ mid(); return Promise.resolve(); }
   lb.textContent=label; $('span',se).textContent=seal; D.classList.add('on');
@@ -1503,16 +1641,7 @@ function doors(label,seal,mid){ const D=$('#doors'), [l,r]=$$('.door',D), se=$('
     se.animate([{transform:'scale(1)',opacity:1},{transform:'scale(.6)',opacity:0}],{duration:300,fill:'forwards'}); lb.animate([{opacity:1},{opacity:0}],{duration:250,fill:'forwards'});
     const a=l.animate([{transform:'translateX(0)'},{transform:'translateX(-101%)'}],{...o2,delay:150}); r.animate([{transform:'translateX(0)'},{transform:'translateX(101%)'}],{...o2,delay:150});
     a.onfinish=()=>{ D.classList.remove('on'); res(); }; },1050)); }
-function route(first){ const [v,s]=parse(); if(first){ show(v,s,true); return; } if(v===current&&s===sub) return;
-  if(busy){ return; } busy=true; const nm=viewName[v||'home'];
-  doors(nm[0],nm[1],()=>show(v,s)).then(()=>busy=false); }
-addEventListener('hashchange',()=>route(false));
-function go(h){ if(location.hash===h) route(false); else location.hash=h; }
-document.addEventListener('click',e=>{ const a=e.target.closest('[data-home]'); if(!a) return; e.preventDefault(); if(current){ history.pushState(null,'',location.pathname+location.search); route(false); } else scrollTo({top:0,behavior:RM?'auto':'smooth'}); });
-addEventListener('popstate',()=>route(false));
-function dockSync(){ const t=current?TAB[current]:'home'; $$('.dock a').forEach(a=>{ a.dataset.tab===t?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); }); const a=$(`.dock a[data-tab="${t}"]`), ind=$('#ind'); if(a){ ind.style.width=a.offsetWidth+'px'; ind.style.transform=`translateX(${a.offsetLeft}px)`; } }
-addEventListener('resize',dockSync);
-addEventListener('keydown',e=>{ if(e.key==='Escape'&&current) go('#'); });
+
 /* ═════════ motion layer two ═════════ */
 /* embers rise over the film, more of them as night falls */
 (function(){ const cv=$('#embers'); if(!cv||RM) return; const cx=cv.getContext('2d'); let W=0,H=0,P=[],vis=true; const d=Math.min(devicePixelRatio||1,2);
@@ -1543,8 +1672,6 @@ if(FINE&&!RM){ $$('.way,.xp,.vcard-img').forEach(c=>{ c.classList.add('tilt'); i
     lines.forEach((l,i)=>l.animate([{strokeDashoffset:1},{strokeDashoffset:0}],{duration:1600,delay:i*70,easing:'cubic-bezier(.65,0,.35,1)',fill:'forwards'}));
     spots.forEach((x,i)=>x.animate([{opacity:0,transform:'scale(0)'},{opacity:1,transform:'scale(1)'}],{duration:700,delay:1100+i*160,easing:'cubic-bezier(.34,1.56,.64,1)',fill:'forwards'}).onfinish=()=>x.style.opacity=1); },{threshold:.12}).observe(s); })();
 
-/* the phone's plan fills in, one ceremony at a time */
-(function(){ const li=$$('.ph-list li'); new IntersectionObserver((es,o)=>{ if(!es[0].isIntersecting) return; o.disconnect(); li.forEach((l,i)=>setTimeout(()=>l.classList.add('on'),RM?0:400+i*420)); },{threshold:.4}).observe($('.phone')); })();
 
 /* the footer name, letter by letter */
 (function(){ const w=$('.ft-word'); const hi=$('.hi',w).outerHTML; w.innerHTML=hi+[...'VARNAGARH'].map(c=>`<span class="l">${c}</span>`).join('');
@@ -1658,8 +1785,8 @@ const HI={
  '#ch2 h2':'हर मेहमान आता है <em>झरोखे से होकर।</em>','#ch3 h2':'ज़नाना चौक, <em>दोपहर चार बजे।</em>','#ch4 h2':'दीये, <em>हाथ से जलाए हुए।</em>','#ch5 h2':'आपका विवाह <em>यहाँ से शुरू होता है।</em>',
  '#wl-h':'एक रात के लिए आइए। <em>या पूरे जीवन के लिए।</em>','#co-h':'लंबी दीर्घा में <em>चलिए।</em>','#pk-h':'लौटिए <em>बदलकर।</em>','#ve-h':'हर रात का <em>स्थल चुनिए।</em>','#dc-h':'अपने <em>रंगों में देखिए।</em>',
  '#ce-h':'मेहंदी से <em>विदाई तक।</em>','#rw-h':'हर विवाह <em>अलग था।</em>','#td-h':'महल की <em>अपनी घड़ी है।</em>','#tb-h':'पुरानी रसोई के <em>व्यंजन।</em>','#ex-h':'दिन जो <em>आपके हैं।</em>','#ap-h':'पूरी योजना, <em>एक स्क्रीन पर।</em>','#fq-h':'हर परिवार के <em>सवाल।</em>','#cd-h':'दीये जल चुके हैं। <em>हम प्रतीक्षा में हैं।</em>',
- '.hd-r .hd-link[href="#stay"]':'ठहरें','.hd-r .hd-link[href="#wed"]':'विवाह','.hd-cta':'विवाह की योजना',
- '.dock a[data-tab="home"] span':'महल','.dock a[data-tab="stay"] span':'ठहरें','.dock a[data-tab="wed"] span':'विवाह','.dock a[data-tab="discover"] span':'अनुभव','.dock a[data-tab="my"] span':'मेरी यात्रा',
+ '.nav a[href="#suites"]':'कक्ष','.nav a[href="#weddings"]':'विवाह','.nav a[href="#dining"]':'रसोई','.nav a[href="#experiences"]':'अनुभव','.nav a[href="#faq"]':'प्रश्न','.hd-cta':'संपर्क','.hd-book':'ठहरें',
+ '#bk-h':'कक्ष चुनिए। <em>रातें चुनिए।</em>','#pl-h':'पाँच क़दम। <em>एक अनुमान।</em>','#eq-h':'महल को लिखिए। <em>उसी दिन उत्तर।</em>',
  '#ch1 > p':'झील पर एक महल · उदयपुर · 1781 से','#ch1 [data-i18n="cine"]':'फ़िल्म चलाइए','[data-i18n="look"]':'हर स्थल को देखिए'};
 (function(){ const b=$('#langB'); let hi=false; const orig=new Map();
   const apply=v=>{ hi=v; document.documentElement.lang=v?'hi':'en'; Object.entries(HI).forEach(([sel,t])=>{ $$(sel).forEach(el=>{ if(!orig.has(el)) orig.set(el,el.innerHTML); el.innerHTML=v?t:orig.get(el); if(!v) $$('.w>span',el).forEach(x=>x.style.transform='none'); el.classList.toggle('hi-on',v); if(v&&!RM) el.animate([{opacity:0,filter:'blur(8px)',transform:'translateY(10px)'},{opacity:1,filter:'blur(0)',transform:'none'}],{duration:800,easing:'cubic-bezier(.16,1,.3,1)'}); }); });
@@ -1674,61 +1801,15 @@ const _hiCSS=document.createElement('style'); _hiCSS.textContent=`.hi-on{font-fa
       const bell=()=>{ if(!on) return; const n=[440,495,550,660,733,880][Math.floor(Math.random()*6)], o=ac.createOscillator(), g=ac.createGain(); o.type='sine'; o.frequency.value=n; g.gain.setValueAtTime(0,ac.currentTime); g.gain.linearRampToValueAtTime(.05,ac.currentTime+.02); g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+3.5); o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime+3.6); bellT=setTimeout(bell,2200+Math.random()*3000); }; bellT=setTimeout(bell,2500); nodes.m=m; }
     else if(ac&&nodes.m){ const m=nodes.m; m.gain.cancelScheduledValues(ac.currentTime); m.gain.setValueAtTime(m.gain.value,ac.currentTime); m.gain.linearRampToValueAtTime(0,ac.currentTime+1.2); const ns=nodes.slice(); setTimeout(()=>ns.forEach(n=>{ try{ n.stop(); }catch(e){} }),1300); nodes=[]; clearTimeout(bellT); } }catch(e){} }
   let y=0; function step(now){ if(!on) return; const fh=film.offsetHeight, k=clamp((now-t0)/2500); const sp=(y<fh-innerHeight?3.4:6.5)*ease(k); y+=sp; window.scrollTo(0,y); if(y>=document.documentElement.scrollHeight-innerHeight-2){ stop(); return; } raf=requestAnimationFrame(step); }
-  function start(){ if(on) return; if(current){ history.pushState(null,'',location.pathname); route(false); }
+  function start(){ if(on) return; menu(false);
     on=true; document.body.classList.add('cinema'); chip.classList.remove('fade'); chip.classList.add('on'); setTimeout(()=>chip.classList.add('fade'),3200); window.scrollTo(0,0); y=0; t0=performance.now(); sound(true); setTimeout(()=>{ raf=requestAnimationFrame(step); },RM?0:600); }
   function stop(){ if(!on) return; on=false; cancelAnimationFrame(raf); document.body.classList.remove('cinema'); chip.classList.remove('on','fade'); sound(false); }
   document.addEventListener('click',e=>{ const b=e.target.closest('[data-cine]'); if(b){ e.preventDefault(); e.stopPropagation(); start(); } else if(on) stop(); },true);
   ['wheel','touchstart'].forEach(ev=>addEventListener(ev,()=>{ if(on) stop(); },{passive:true}));
   addEventListener('keydown',e=>{ if(on&&['Escape',' ','ArrowDown','ArrowUp','PageDown','PageUp'].includes(e.key)) stop(); }); })();
 
-/* ═════════ the wedding website ═════════ */
-V.invite=()=>{ const w=S.wedding||{names:'Ananya and Kabir',date:iso(addDays(new Date(),112)),ev:CER.map(c=>({k:c.k,on:true,venue:c.venue})),sample:true}; const d=fromIso(w.date); const nm=w.names.split(/\s+(?:and|&)\s+/i);
-  const rs=(S.rsvps||[]); const yes=rs.reduce((a,r)=>a+r.n,0);
-  return `<div class="inv-hero"><img src="img/courtyard-night.webp" alt=""><video class="bgv" muted loop playsinline preload="none" poster="img/chowk-film.webp" data-src="media/N.mp4" aria-hidden="true"></video>
-   <div class="inv-in" data-in><span class="hi">शुभ विवाह</span><h1 class="inv-names">${esc(nm[0]||w.names)}${nm[1]?`<em>and</em>${esc(nm[1])}`:''}</h1><p class="inv-date">${fmtD(d,{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase()} · VARNAGARH PALACE, UDAIPUR</p><div class="inv-cd" id="invCd"></div></div></div>
-   ${w.sample?`<p class="sample" style="text-align:center;margin-top:20px">A sample wedding website. Plan your wedding and yours appears here, with your own names and days.</p>`:''}
-   <section class="inv-sec"><p class="kick"><span class="hi">कार्यक्रम</span>THE DAYS</p><h2 class="v-h" style="margin-bottom:26px">Join us for <em>every one.</em></h2>
-    <div class="inv-days">${w.ev.filter(e=>e.on).map(e=>{ const c=CER.find(x=>x.k===e.k), v=VENUES[e.venue]; return `<article class="inv-day" data-in style="--c:${c.c}"><img src="img/${c.img}.webp" alt=""><div><small>${fmtD(addDays(d,c.day),{weekday:'long',day:'numeric',month:'short'}).toUpperCase()}</small><b>${c.name} <span class="hi" style="font-size:15px;color:var(--brass)">${c.hi}</span></b><span>${esc(v.name)} · ${esc(c.when.split(', ')[1]||'')}</span></div></article>`; }).join('')}</div></section>
-   <section class="inv-sec"><div class="rsvp"><div class="card" data-in><h3>Will you come?</h3><p style="margin-bottom:16px">Tell ${esc(nm[0]||'us')} and ${esc(nm[1]||'')} by ${fmtD(addDays(d,-30),{day:'numeric',month:'long'})}.</p>
-     <form id="rsF" novalidate><div class="field"><label for="rsN">Your name</label><input id="rsN" autocomplete="name" required><span class="err">Please add your name</span></div>
-     <div class="stepper" style="margin-top:10px"><span>Guests in your family</span><div><button type="button" data-rn="-1" aria-label="Fewer">−</button><b id="rsC">2</b><button type="button" data-rn="1" aria-label="More">+</button></div></div>
-     <p style="font-size:12px;letter-spacing:.1em;color:var(--kohl-2);margin-top:12px">WHICH DAYS</p><div class="evpick">${w.ev.filter(e=>e.on).map(e=>{ const c=CER.find(x=>x.k===e.k); return `<label><input type="checkbox" value="${c.k}" checked><span>${c.name}</span></label>`; }).join('')}</div>
-     <div class="field" style="margin-top:12px"><label for="rsD">Food preferences</label><input id="rsD" placeholder="Jain, vegetarian, no onion and garlic…"></div>
-     <button class="btn rani" type="submit" style="width:100%;margin-top:16px">Send our RSVP</button></form></div>
-    <div class="card" data-in><h3>Who's coming</h3><p class="rs-big tnum" id="rsBig">${yes}</p><p>guests have said yes so far</p><ul class="rs-list" id="rsL">${rs.slice(-6).reverse().map(r=>`<li><span>${esc(r.name)}</span><span>${r.n} · ${r.days.length} days</span></li>`).join('')}</ul>
-     <div class="share"><a class="btn rani sm" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text=${encodeURIComponent(`You're invited to the wedding of ${w.names} at Varnagarh Palace, Udaipur, from ${fmtD(d,{day:'numeric',month:'long',year:'numeric'})}. RSVP here: ${location.href.split('#')[0]}#invite`)}">Share on WhatsApp</a><button class="btn line sm" type="button" id="cpL">Copy link</button></div></div></div></section>`; };
-/* ═════════ rooms for the guests ═════════ */
-V.rooms=()=>{ S.fams=S.fams||[{n:'Sharma family',c:4,s:'bride'},{n:'Mehta family',c:3,s:'groom'},{n:'Nani and Nana',c:2,s:'bride'},{n:'Kapoor cousins',c:6,s:'groom'}];
-  return `${back('#my','My trip')}<p class="kick"><span class="hi">कक्ष योजना</span>ROOMS FOR YOUR GUESTS</p><h1 class="v-h" style="margin-bottom:12px">Every family, <em>a room.</em></h1><p class="v-sub" style="margin-bottom:30px">Add your families, or paste a list. We place each one in the right suite and keep the two sides in their own wings.</p>
-   <div class="rooms"><div class="card" data-in><div class="fam fam-h"><span>FAMILY</span><span>PEOPLE</span><span>SIDE</span><span></span></div><div id="famL"></div>
-    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><button class="btn line sm" type="button" id="famAdd">Add a family</button><button class="btn ghost" type="button" id="famPaste">Paste a list</button></div>
-    <div class="field" id="pasteBox" hidden style="margin-top:12px"><label for="pasteT">One family per line: name, people</label><textarea id="pasteT" placeholder="Agarwal family, 5&#10;Bua ji, 2"></textarea><button class="btn rani sm" type="button" id="pasteGo" style="margin-top:8px;justify-self:start">Add these</button></div></div>
-   <div class="card" data-in><h3>The palace</h3><div class="legend"><span><i style="background:var(--rani)"></i>Bride's family</span><span><i style="background:var(--brass)"></i>Groom's family</span><span><i style="background:var(--line)"></i>Free</span></div><div class="grid42" id="g42">${[...Array(42)].map((_,k)=>`<i style="--k:${k}"></i>`).join('')}</div><div id="roomSum"></div></div></div>`; };
-function famRooms(f){ return f.c<=2?1:f.c<=3?1:Math.ceil(f.c/2); }
-function roomsDraw(host){ const L=$('#famL',host); L.innerHTML=S.fams.map((f,i)=>`<div class="fam" data-i="${i}"><input value="${esc(f.n)}" aria-label="Family name" data-f="n"><input type="number" min="1" max="20" value="${f.c}" aria-label="People" data-f="c"><select aria-label="Side" data-f="s"><option value="bride" ${f.s==='bride'?'selected':''}>Bride</option><option value="groom" ${f.s==='groom'?'selected':''}>Groom</option></select><button type="button" data-rm="${i}" aria-label="Remove ${esc(f.n)}">×</button></div>`).join('');
-  roomsSum(host); }
-function roomsSum(host){ const br=S.fams.filter(f=>f.s==='bride').reduce((a,f)=>a+famRooms(f),0), gr=S.fams.filter(f=>f.s==='groom').reduce((a,f)=>a+famRooms(f),0), ppl=S.fams.reduce((a,f)=>a+ +f.c,0);
-  const cells=$$('#g42 i',host); cells.forEach((c,k)=>{ const side=k<Math.min(42,br)?'var(--rani)':k>=42-Math.min(42-Math.min(42,br),gr)?'var(--brass)':''; c.style.setProperty('--c',side); c.classList.toggle('on',!!side); });
-  const used=Math.min(42,br+gr), over=br+gr-42, nights=(S.wedding&&S.wedding.nights)||3;
-  $('#roomSum',host).innerHTML=`<div class="sumrow"><span>Guests housed</span><span>${ppl}</span></div><div class="sumrow"><span>Suites used</span><span>${used} of 42</span></div><div class="sumrow"><span>Room nights</span><span>${used*nights}</span></div>${over>0?`<p style="color:var(--rani);font-size:13px;margin-top:8px">${over} more rooms than the palace has. We'll hold them at our sister hotel across the lake, with a boat every half hour.</p>`:''}<div class="sumrow t"><span>Rooms estimate</span><span>${short(used*nights*52000)}</span></div>`; save(); }
 
-const _wire=wire; wire=function(v,host,s){ _wire(v,host,s);
-  if(v==='invite'){ const w=S.wedding, d=w?fromIso(w.date):addDays(new Date(),112), cd=$('#invCd',host); const f=()=>{ if(!document.body.contains(cd)) return; const ms=Math.max(0,d-new Date()); cd.innerHTML=[[Math.floor(ms/864e5),'DAYS'],[Math.floor(ms/36e5)%24,'HOURS'],[Math.floor(ms/6e4)%60,'MINUTES'],[Math.floor(ms/1e3)%60,'SECONDS']].map(([n,l])=>`<div><b class="tnum">${String(n).padStart(2,'0')}</b><span>${l}</span></div>`).join(''); setTimeout(f,1000); }; f();
-    let n=2; host.addEventListener('click',e=>{ const b=e.target.closest('[data-rn]'); if(b){ n=clamp(n+ +b.dataset.rn,1,20); $('#rsC',host).textContent=n; } if(e.target.id==='cpL'){ const u=location.href.split('#')[0]+'#invite'; (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast('Link copied'),()=>toast(u)); } });
-    $('#rsF',host).addEventListener('submit',e=>{ e.preventDefault(); const nm=$('#rsN',host); const ok=nm.value.trim().length>1; nm.parentElement.toggleAttribute('data-err',!ok); if(!ok){ nm.focus(); return; }
-      S.rsvps=S.rsvps||[]; S.rsvps.push({name:nm.value.trim(),n,days:$$('.evpick input:checked',host).map(i=>i.value),food:$('#rsD',host).value}); save();
-      const tot=S.rsvps.reduce((a,r)=>a+r.n,0), big=$('#rsBig',host), from=tot-n, t0=performance.now(); (function g(now){ const k=clamp((now-t0)/800); big.textContent=Math.round(from+n*ease(k)); if(k<1) requestAnimationFrame(g); })(t0);
-      $('#rsL',host).insertAdjacentHTML('afterbegin',`<li><span>${esc(nm.value.trim())}</span><span>${n} · ${$$('.evpick input:checked',host).length} days</span></li>`); if(!RM) $('#rsL li',host).animate([{opacity:0,transform:'translateX(-20px)',background:'rgba(176,18,78,.15)'},{opacity:1,transform:'none',background:'transparent'}],{duration:1200,easing:'cubic-bezier(.16,1,.3,1)'});
-      e.target.reset(); n=2; $('#rsC',host).textContent=2; toast('RSVP sent. Thank you!'); celebrate(); }); }
-  if(v==='rooms'){ roomsDraw(host);
-    host.addEventListener('input',e=>{ const r=e.target.closest('.fam'); if(!r||!e.target.dataset.f) return; const f=S.fams[+r.dataset.i]; f[e.target.dataset.f]=e.target.dataset.f==='c'?clamp(+e.target.value||1,1,20):e.target.value; roomsSum(host); });
-    host.addEventListener('click',e=>{ const rm=e.target.closest('[data-rm]'); if(rm){ S.fams.splice(+rm.dataset.rm,1); roomsDraw(host); }
-      if(e.target.closest('#famAdd')){ S.fams.push({n:'New family',c:2,s:'bride'}); roomsDraw(host); const ins=$$('.fam input[data-f="n"]',host); const last=ins[ins.length-1]; last.focus(); last.select(); if(!RM) last.closest('.fam').animate([{opacity:0,transform:'translateY(-10px)'},{opacity:1,transform:'none'}],{duration:600,easing:'cubic-bezier(.16,1,.3,1)'}); }
-      if(e.target.closest('#famPaste')){ $('#pasteBox',host).hidden=!$('#pasteBox',host).hidden; }
-      if(e.target.closest('#pasteGo')){ const t=$('#pasteT',host).value.split('\n').map(l=>l.trim()).filter(Boolean); let side='bride'; t.forEach(l=>{ const m=l.split(/[,\t]/); S.fams.push({n:m[0].trim(),c:clamp(parseInt(m[1])||2,1,20),s:/groom|ladke/i.test(l)?'groom':side}); }); $('#pasteT',host).value=''; $('#pasteBox',host).hidden=true; roomsDraw(host); toast(`${t.length} families added`); } }); }
-};
-
-syncDot(); corrSize(); dockSync();
+syncDot(); corrSize(); spy();
 })();
 </script>
 </body>
