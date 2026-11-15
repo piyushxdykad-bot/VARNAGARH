@@ -559,6 +559,82 @@ input,select,textarea{font:inherit;color:inherit}
 @media (hover:none),(pointer:coarse){.cur,.cur-r{display:none}}
 .mag{transition:transform .7s var(--e)}
 
+/* ═══════ motion layer two ═══════ */
+/* the name is cast in gold: a light runs across each letter */
+.t-big span{background:linear-gradient(105deg,#FFF7EA 0%,#FFF7EA 38%,#FFE2A6 46%,#E9B65A 50%,#FFE2A6 54%,#FFF7EA 62%,#FFF7EA 100%) 0 0/320% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gild 5.5s cubic-bezier(.45,0,.2,1) infinite;filter:drop-shadow(0 4px 24px rgba(23,15,34,.55))}
+@keyframes gild{0%{background-position:100% 0}60%,100%{background-position:0 0}}
+#embers{position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen}
+/* reading progress: a rani thread under the header */
+.hd::before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--rani),var(--marigold));transform-origin:left;transform:scaleX(var(--sp,0));z-index:2}
+/* a second marquee, outlined, running the other way */
+.marq.two{background:var(--night);padding:14px 0}
+.marq.two .marq-t{font-size:clamp(26px,3vw,48px);font-style:italic}
+.marq.two .marq-t span:not(.hi){color:transparent;-webkit-text-stroke:1px var(--brass-l)}
+/* the palace in numbers */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.num{position:relative;padding:clamp(30px,5vh,56px) clamp(14px,2vw,30px);text-align:center;overflow:hidden}
+.num+.num::before{content:"";position:absolute;left:0;top:16%;bottom:16%;width:1px;background:linear-gradient(transparent,var(--brass),transparent);transform:scaleY(var(--ln,0));transition:transform 1.4s var(--eio)}
+.nums.in .num::before{--ln:1}
+.num b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(54px,6.4vw,118px);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.num b em{font-style:italic;color:var(--rani)}
+.num .hi{display:block;color:var(--brass);font-size:18px;margin-top:10px;letter-spacing:0}
+.num span{font-size:12px;letter-spacing:.18em;color:var(--kohl-2)}
+.num:hover b{animation:jiggle .7s var(--e)}
+@keyframes jiggle{30%{transform:translateY(-8px) rotate(-2deg)}60%{transform:translateY(2px) rotate(1deg)}}
+@media (max-width:760px){.nums{grid-template-columns:1fr 1fr}.num:nth-child(3)::before{display:none}}
+/* cards that lean toward you, with a lamp-light glare */
+.tilt{transform-style:preserve-3d;transition:transform .9s var(--e)}
+.tilt .glare{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,226,166,.38),transparent 55%);mix-blend-mode:soft-light;transition:opacity .5s}
+.tilt:hover .glare{opacity:1}
+/* the long gallery bends like a corridor */
+.corr-track{perspective:1400px}
+.suite-img{transform:perspective(1200px) rotateY(var(--ry,0deg)) scale(var(--sc,1));transition:transform .2s linear}
+.suite h3,.suite .m{transform:translateX(var(--tx,0));transition:transform .2s linear}
+/* ceremonies: the colour of each day pours across its row */
+.cer-row::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--c),transparent 85%);opacity:.22;transform:scaleX(0);transform-origin:left;transition:transform .9s var(--e)}
+.cer-row{z-index:0}
+.cer-row:hover::before{transform:scaleX(1)}
+.cer-row .n{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(221,183,108,.4);transition:background .5s,color .5s,transform .7s var(--e)}
+.cer-row:hover .n{background:var(--c);color:var(--ivory);transform:rotate(-12deg) scale(1.1)}
+/* the phone floats */
+.phone{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.ph-list li{opacity:0;transform:translateX(20px);transition:opacity .6s var(--e),transform .8s var(--e)}
+.ph-list li.on{opacity:1;transform:none}
+.ph-list li b::after{content:"";display:inline-block;width:12px;height:7px;margin-left:8px;border:solid var(--rani);border-width:0 0 1.6px 1.6px;transform:rotate(-45deg) scale(0);transition:transform .5s var(--e) .4s}
+.ph-list li.on b::after{transform:rotate(-45deg) scale(1)}
+/* rani buttons catch the lamplight */
+.btn.rani::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;z-index:1;background:linear-gradient(100deg,transparent,rgba(255,240,200,.55),transparent);transform:skewX(-20deg);animation:shine 4.5s var(--e) infinite;pointer-events:none}
+@keyframes shine{0%,70%{left:-40%}100%{left:130%}}
+/* the footer name: every letter is a lamp */
+.ft-word .l{display:inline-block;transition:transform .6s var(--e),color .4s;cursor:default}
+.ft-word .l:hover{transform:translateY(-.12em) rotate(-4deg);color:var(--lamp);text-shadow:0 0 40px rgba(255,180,90,.6)}
+/* the date pill */
+.pill{position:fixed;right:var(--g);bottom:calc(14px + env(safe-area-inset-bottom));z-index:74;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 18px;border-radius:999px;background:var(--night);color:var(--ivory);box-shadow:0 20px 50px -14px rgba(23,15,34,.6);transform:translateY(140%);transition:transform .9s var(--e)}
+.pill.on{transform:none}
+.pill .live{position:relative;width:9px;height:9px;border-radius:50%;background:var(--marigold);flex:none}
+.pill .live::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid var(--marigold);animation:ping2 1.8s var(--e) infinite}
+@keyframes ping2{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.8);opacity:0}}
+.pill p{font-size:12.5px;line-height:1.3}
+.pill p b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;color:var(--lamp)}
+.pill .btn{height:42px;padding:0 18px;font-size:11.5px}
+@media (max-width:1180px){.pill{display:none}}
+/* sparks that follow the cursor in the lamplit rooms */
+.spark{position:fixed;left:0;top:0;z-index:340;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#FFE2A6,#E99A1E 60%,transparent 70%);box-shadow:0 0 10px 2px rgba(255,190,90,.6)}
+/* plan lines draw themselves */
+.plan .w,.plan .w2{stroke-dasharray:1;stroke-dashoffset:var(--do,0)}
+/* view entrance: a brass line runs under each page title */
+.v-hero h1{position:relative}
+.v-hero h1::after{content:"";position:absolute;left:0;bottom:-14px;height:2px;width:120px;background:var(--brass-l);transform-origin:left;animation:rule 1.4s var(--eio) .7s backwards}
+@keyframes rule{from{transform:scaleX(0)}}
+/* em words get a hand-drawn brass underline as they arrive */
+.h2 em{background:linear-gradient(var(--brass-l),var(--brass-l)) 0 92%/0 1.5px no-repeat;transition:background-size 1.4s var(--eio) .5s;padding-bottom:.04em}
+.h2.drawn em{background-size:100% 1.5px}
+.cer .h2.drawn em{background-image:linear-gradient(var(--rani-l),var(--rani-l))}
+
+@media (prefers-reduced-motion:reduce){
+  .t-big span{animation:none;color:var(--ivory);background:none}.phone{animation:none}.btn.rani::after{display:none}#embers{display:none}.ph-list li{opacity:1;transform:none}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
   .rv{opacity:1;transform:none}.split .w>span{transform:none}.reveal-arch::after{display:none}.reveal-arch img{transform:none}
@@ -627,7 +703,7 @@ input,select,textarea{font:inherit;color:inherit}
   <!-- the film: through the jharokha, from morning to lamplight -->
   <section class="film" id="film" aria-label="A film: the camera passes through a carved window into the palace courtyard, and the day turns to a lamplit night as you scroll">
     <div class="film-st">
-      <canvas id="fc" aria-hidden="true"></canvas>
+      <canvas id="fc" aria-hidden="true"></canvas><canvas id="embers" aria-hidden="true"></canvas>
       <div class="ch ch-1" id="ch1">
         <span class="t-hi">पधारो म्हारे देस</span>
         <h1 class="t-big" aria-label="Varnagarh"><span>V</span><span>A</span><span>R</span><span>N</span><span>A</span><span>G</span><span>A</span><span>R</span><span>H</span></h1>
@@ -645,6 +721,7 @@ input,select,textarea{font:inherit;color:inherit}
   </section>
 
   <div class="marq" aria-hidden="true"><div class="marq-t" id="marq"></div></div>
+  <div class="marq two" aria-hidden="true"><div class="marq-t" id="marq2"></div></div>
 
   <!-- two ways in -->
   <section class="sec" aria-labelledby="wl-h">
@@ -655,6 +732,16 @@ input,select,textarea{font:inherit;color:inherit}
     <div class="ways">
       <a class="way rv" href="#stay"><div class="way-img arch"><img src="img/suite-lake.webp" alt="A suite with arched windows open to the lake at sunset" loading="lazy"></div><div class="way-tx"><div><h3><span class="hi">ठहरें</span>Stay</h3><p>Forty-two suites, from the queens' wing to garden pavilions with their own pool.</p></div><span class="go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></div></a>
       <a class="way rv" href="#wed"><div class="way-img arch"><img src="img/mandap.webp" alt="A wedding mandap of marigolds on the palace lawn at golden hour" loading="lazy"><video class="bgv" muted loop playsinline preload="none" poster="img/mandap-film.webp" data-src="media/M.mp4" aria-hidden="true"></video></div><div class="way-tx"><div><h3><span class="hi">विवाह</span>Wed</h3><p>Five venues, five ceremonies, one planner who stays with you from the first call to the vidaai.</p></div><span class="go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></div></a>
+    </div>
+  </section>
+
+  <!-- the palace in numbers -->
+  <section class="sec" aria-label="The palace in numbers" style="padding-top:0;padding-bottom:clamp(60px,10vh,120px)">
+    <div class="nums" id="nums">
+      <div class="num"><b class="tnum" data-to="1781">1781</b><span class="hi">स्थापना</span><span>FOUNDED</span></div>
+      <div class="num"><b class="tnum" data-to="42">42</b><span class="hi">कक्ष</span><span>SUITES</span></div>
+      <div class="num"><b class="tnum" data-to="5">5</b><span class="hi">स्थल</span><span>WEDDING VENUES</span></div>
+      <div class="num"><b class="tnum" data-to="11000" data-k="1">11,000</b><span class="hi">दीये</span><span>DIYAS EVERY WEDDING NIGHT</span></div>
     </div>
   </section>
 
@@ -749,6 +836,7 @@ input,select,textarea{font:inherit;color:inherit}
 <section class="view" id="v-my" aria-label="My trip" tabindex="-1"><div class="view-in"></div></section>
 <section class="view" id="v-done" aria-label="Confirmed" tabindex="-1"><div class="view-in"></div></section>
 <canvas class="burst" id="burst" aria-hidden="true"></canvas>
+<a class="pill" id="pill" href="#wed" aria-label="Check wedding dates"><span class="live" aria-hidden="true"></span><p><b id="pillN">Wedding season</b>dates still open, Nov to Feb</p><span class="btn rani">Check dates</span></a>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 (()=>{
@@ -864,14 +952,19 @@ function openPalace(){ const L=$('#loader');
   $$('#hd,#dock,#home-main').forEach(e=>e.removeAttribute('inert')); document.body.classList.remove('locked');
   route(true);
   if(RM){ L.classList.add('gone'); return; }
-  L.animate([{clipPath:'circle(150% at 50% 50%)'},{clipPath:'circle(0% at 50% 50%)'}],{duration:1400,easing:'cubic-bezier(.76,0,.24,1)',fill:'forwards'}).onfinish=()=>L.classList.add('gone');
-  if(!current){ $$('.t-big span').forEach((s,i)=>s.animate([{transform:'translateY(70%) rotate(8deg)',opacity:0},{transform:'none',opacity:1}],{duration:1500,delay:500+i*60,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}));
-    $$('#ch1 .t-hi, #ch1 p, #ch1 .scroll-cue').forEach((s,i)=>s.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:1100,delay:1100+i*120,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'})); }
+  const D=$('#doors'), [dl,dr]=$$('.door',D), se=$('#seal'), lb=$('#doorL'); lb.textContent='Padharo · Welcome'; $('span',se).textContent='व';
+  D.classList.add('on'); dl.style.transform=dr.style.transform='translateX(0)'; se.style.transform='scale(1)'; lb.style.opacity=1;
+  L.animate([{opacity:1},{opacity:0}],{duration:500,fill:'forwards'}).onfinish=()=>{ L.classList.add('gone');
+    se.animate([{transform:'scale(1) rotate(0)'},{transform:'scale(1.25) rotate(90deg)',opacity:0}],{duration:700,easing:'cubic-bezier(.76,0,.24,1)',fill:'forwards'}); lb.animate([{opacity:1},{opacity:0}],{duration:400,fill:'forwards'});
+    const o={duration:1300,delay:350,easing:'cubic-bezier(.76,0,.24,1)',fill:'forwards'};
+    dl.animate([{transform:'translateX(0)'},{transform:'translateX(-101%)'}],o); dr.animate([{transform:'translateX(0)'},{transform:'translateX(101%)'}],o).onfinish=()=>{ D.classList.remove('on'); [dl,dr,se,lb].forEach(e=>{ e.getAnimations().forEach(a=>a.cancel()); e.style.transform=''; e.style.opacity=''; }); }; };
+  if(!current){ $$('.t-big span').forEach((s,i)=>s.animate([{transform:'translateY(70%) rotate(8deg)',opacity:0},{transform:'none',opacity:1}],{duration:1600,delay:1100+i*70,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}));
+    $$('#ch1 .t-hi, #ch1 p, #ch1 .scroll-cue').forEach((s,i)=>s.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:1100,delay:1800+i*120,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'})); }
 }
 
 /* ───── film chapters, time of day, lamps ───── */
 const film=$('#film'), chs=[1,2,3,4,5].map(i=>$('#ch'+i)), tArc=$('#todArc'), tSun=$('#todSun'), tT=$('#todT'), tL=$('#todL'), fbar=$('#fbar'), diyaN=$('#diyaN');
-const letters=$$('.t-big span');
+const letters=$$('.t-big span'); letters.forEach((s,i)=>s.style.animationDelay=(i*.09)+'s'); let filmP=0;
 function filmFrame(){ const r=film.getBoundingClientRect(), tot=r.height-innerHeight; const p=clamp(-r.top/tot); tgtF=p*(N-1);
   const op=[band(p,-1,0,.05,.1),band(p,.13,.17,.27,.32),band(p,.4,.44,.52,.57),band(p,.62,.66,.84,.88),band(p,.9,.94,1.1,1.2)];
   chs.forEach((c,i)=>{ c.style.opacity=op[i].toFixed(3); c.style.transform=`translateY(${((1-op[i])*(i===0?-30:30)).toFixed(1)}px)`; c.style.visibility=op[i]>0?'visible':'hidden'; });
@@ -880,11 +973,14 @@ function filmFrame(){ const r=film.getBoundingClientRect(), tot=r.height-innerHe
   tT.textContent=`${hh>12?hh-12:hh}:${String(mm).padStart(2,'0')}`; tL.textContent=minutes<12*60?'MORNING':minutes<17*60?'AFTERNOON':minutes<18*60+30?'GOLDEN HOUR':minutes<19*60+30?'DUSK':'NIGHT';
   const dp=clamp((minutes-6*60)/(15*60)); tArc.setAttribute('stroke-dasharray',`${dp.toFixed(3)} 1`); const a=Math.PI*(1-dp)*0.82+Math.PI*.09; tSun.setAttribute('cx',(60+44*Math.cos(a)*-1+0).toFixed(1)); tSun.setAttribute('cx',(60-44*Math.cos(a)).toFixed(1)); tSun.setAttribute('cy',(72-44*Math.sin(a)+6).toFixed(1));
   tSun.setAttribute('fill',minutes>19*60?'#F3EFE7':minutes>17*60?'#FF9E5E':'#FFD9A0');
-  fbar.style.setProperty('--p',p.toFixed(4));
+  fbar.style.setProperty('--p',p.toFixed(4)); filmP=p;
   diyaN.textContent=(Math.round(clamp((p-.62)/.26)*11000/10)*10).toLocaleString('en-IN');
   return p; }
 
 /* ───── marquee ───── */
+(function(){ const m=$('#marq2'); const W=['A palace on the lake','Since 1781','Five venues','Forty-two suites','Eleven thousand diyas'];
+  const one=W.map(e=>`<span>${e}</span><svg aria-hidden="true"><use href="#flower"/></svg>`).join(''); m.innerHTML=one+one+one; if(RM) return; let x=0,v=0,last=scrollY,w=0; const ms=()=>w=m.scrollWidth/3; ms(); addEventListener('resize',ms); document.fonts&&document.fonts.ready.then(ms);
+  (function f(){ const d=scrollY-last; last=scrollY; v+=(d*.4-v)*.1; x+=(.5+v); if(w){ x%=w; if(x>0) x-=w; } m.style.transform=`translate3d(${x.toFixed(1)}px,0,0)`; requestAnimationFrame(f); })(); })();
 (function(){ const m=$('#marq'); const W=[['Mehendi','मेहंदी'],['Haldi','हल्दी'],['Sangeet','संगीत'],['Pheras','फेरे'],['Vidaai','विदाई'],['Baraat','बारात']];
   const one=W.map(([e,h])=>`<span>${e}</span><span class="hi">${h}</span><svg aria-hidden="true"><use href="#flower"/></svg>`).join(''); m.innerHTML=one+one+one;
   if(RM) return; let x=0,v=0,last=scrollY,dir=1,w=0; const ms=()=>w=m.scrollWidth/3; ms(); addEventListener('resize',ms); document.fonts&&document.fonts.ready.then(ms);
@@ -899,7 +995,8 @@ $('#coT').textContent=String(coTrack.children.length).padStart(2,'0');
 function corrSize(){ if(innerWidth>900&&!RM) corr.style.setProperty('--ch',(coTrack.scrollWidth-innerWidth+innerHeight*1.2)+'px'); else corr.style.removeProperty('--ch'); }
 function corrFrame(){ if(innerWidth<=900||RM) return; const r=corr.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return; const span=coTrack.scrollWidth-innerWidth, p=clamp(-r.top/(corr.offsetHeight-innerHeight));
   coTrack.style.setProperty('--cx',(-p*span).toFixed(1)+'px'); $('#coBar').style.setProperty('--cp',p.toFixed(3)); const nC=coTrack.children.length; $('#coN').textContent=String(Math.min(nC,1+Math.floor(p*nC))).padStart(2,'0');
-  $$('.suite-img img',coTrack).forEach(im=>{ const b=im.parentElement.getBoundingClientRect(); im.style.setProperty('--ix',(((b.left+b.width/2)/innerWidth-.5)*-9).toFixed(2)+'%'); }); }
+  $$('.suite-img img',coTrack).forEach(im=>{ const b=im.parentElement.getBoundingClientRect(); im.style.setProperty('--ix',(((b.left+b.width/2)/innerWidth-.5)*-9).toFixed(2)+'%'); });
+  $$('.suite',coTrack).forEach(s=>{ const b=s.getBoundingClientRect(), d=clamp(((b.left+b.width/2)/innerWidth-.5)*2,-1.4,1.4); s.style.setProperty('--ry',(d*-16).toFixed(2)+'deg'); s.style.setProperty('--sc',(1-Math.abs(d)*.07).toFixed(3)); s.style.setProperty('--tx',(d*-14).toFixed(1)+'px'); }); }
 
 /* ───── venues on the plan ───── */
 (function(){ const s=$('#planSvg'); let g=`<path class="water" d="M0 0 H150 C120 120 170 220 130 320 C100 420 160 520 120 600 H0 Z"/>
@@ -948,6 +1045,7 @@ let burstF=null; function celebrate(){ if(RM) return; burstF&&burstF.stop(); bur
 function splitWords(el){ const walk=n=>{ [...n.childNodes].forEach(c=>{ if(c.nodeType===3){ const f=document.createDocumentFragment(); c.textContent.split(/(\s+)/).forEach(t=>{ if(!t) return; if(/^\s+$/.test(t)) f.appendChild(document.createTextNode(t)); else { const w=document.createElement('span'); w.className='w'; const i=document.createElement('span'); i.textContent=t; w.appendChild(i); f.appendChild(w); } }); c.replaceWith(f); } else if(c.nodeType===1) walk(c); }); }; walk(el); }
 $$('.split').forEach(splitWords);
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; const el=e.target; io.unobserve(el); if(RM){ el.classList.add('in'); return; }
+  if(el.classList.contains('split')) el.classList.add('drawn');
   if(el.classList.contains('split')) $$('.w>span',el).forEach((s,i)=>s.animate([{transform:'translateY(110%) rotate(6deg)',transformOrigin:'0 100%'},{transform:'none',transformOrigin:'0 100%'}],{duration:1300,delay:i*55,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'}));
   else if(el.classList.contains('rv')) el.animate([{opacity:0,transform:'translateY(40px)'},{opacity:1,transform:'none'}],{duration:1200,delay:(+el.dataset.d||0),easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'});
   else el.classList.add('in'); }),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
@@ -962,7 +1060,10 @@ const hd=$('#hd');
 function hdState(){ const dark=!current&&($('#film').getBoundingClientRect().bottom>hd.offsetHeight); hd.classList.toggle('solid',!!current||!dark); }
 let sq=false; function onScroll(){ if(sq) return; sq=true; requestAnimationFrame(()=>{ sq=false; if(current) return; filmFrame(); corrFrame(); hdState();
   const ci=$('#codaImg'), b=ci.parentElement.getBoundingClientRect(); if(b.bottom>0&&b.top<innerHeight){ const py=(((b.top+b.height/2)/innerHeight-.5)*-8).toFixed(2)+'%'; ci.style.setProperty('--py',py); $('#codaV').style.setProperty('--py',py); }
-  $('#phD').textContent=String(112-Math.round(clamp(1-($('.teaser').getBoundingClientRect().top/innerHeight))*12)); }); }
+  $('#phD').textContent=String(112-Math.round(clamp(1-($('.teaser').getBoundingClientRect().top/innerHeight))*12));
+  hd.style.setProperty('--sp',clamp(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)).toFixed(4));
+  const fb=film.getBoundingClientRect().bottom, cb=$('.coda').getBoundingClientRect().top; $('#pill').classList.toggle('on',fb<innerHeight*.4&&cb>innerHeight*.5);
+  const ph=$('.phone'), pb=ph.getBoundingClientRect(); if(pb.bottom>0&&pb.top<innerHeight&&!RM) ph.style.transform=`rotate(${(((pb.top+pb.height/2)/innerHeight-.5)*-12-2).toFixed(2)}deg)`; }); }
 addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',()=>{ corrSize(); onScroll(); }); addEventListener('load',()=>{ corrSize(); onScroll(); });
 
 /* ───── cursor + magnetic ───── */
@@ -1134,6 +1235,56 @@ addEventListener('popstate',()=>route(false));
 function dockSync(){ const t=current?TAB[current]:'home'; $$('.dock a').forEach(a=>{ a.dataset.tab===t?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); }); const a=$(`.dock a[data-tab="${t}"]`), ind=$('#ind'); if(a){ ind.style.width=a.offsetWidth+'px'; ind.style.transform=`translateX(${a.offsetLeft}px)`; } }
 addEventListener('resize',dockSync);
 addEventListener('keydown',e=>{ if(e.key==='Escape'&&current) go('#'); });
+/* ═════════ motion layer two ═════════ */
+/* embers rise over the film, more of them as night falls */
+(function(){ const cv=$('#embers'); if(!cv||RM) return; const cx=cv.getContext('2d'); let W=0,H=0,P=[],vis=true; const d=Math.min(devicePixelRatio||1,2);
+  const size=()=>{ W=cv.width=innerWidth*d; H=cv.height=innerHeight*d; }; size(); addEventListener('resize',size);
+  new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(film);
+  const mk=()=>({x:Math.random()*W,y:H+10*d,r:(1+Math.random()*2.6)*d,vy:(.4+Math.random()*1.1)*d,vx:(Math.random()-.5)*.4*d,ph:Math.random()*6,life:0,max:300+Math.random()*400});
+  (function f(t){ requestAnimationFrame(f); if(!vis||current){ return; } cx.clearRect(0,0,W,H); const want=Math.round(10+clamp((filmP-.5)/.4)*110);
+    while(P.length<want&&Math.random()<.5) P.push(mk());
+    for(const p of P){ p.life++; p.y-=p.vy; p.x+=p.vx+Math.sin(t/700+p.ph)*.35*d; const a=Math.min(1,p.life/40)*Math.max(0,1-p.life/p.max)*(.35+.65*Math.abs(Math.sin(t/300+p.ph)));
+      const g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*5); g.addColorStop(0,`rgba(255,226,166,${a})`); g.addColorStop(.35,`rgba(233,154,30,${a*.55})`); g.addColorStop(1,'rgba(233,154,30,0)');
+      cx.fillStyle=g; cx.beginPath(); cx.arc(p.x,p.y,p.r*5,0,Math.PI*2); cx.fill(); }
+    P=P.filter(p=>p.life<p.max&&p.y>-20); if(P.length>want+20) P.length=want; })(0); })();
+
+/* the palace in numbers count up */
+(function(){ const n=$('#nums'); new IntersectionObserver((es,o)=>{ if(!es[0].isIntersecting) return; o.disconnect(); n.classList.add('in');
+  $$('b[data-to]',n).forEach((b,i)=>{ const to=+b.dataset.to, from=to>1000&&!b.dataset.k?1600:0, t0=performance.now()+i*160; if(RM){ return; }
+    (function f(now){ const k=clamp((now-t0)/1800), v=Math.round(from+(to-from)*ease(k)); b.textContent=b.dataset.k?v.toLocaleString('en-IN'):String(v); if(k<1) requestAnimationFrame(f); })(performance.now()); }); },{threshold:.4}).observe(n); })();
+
+/* cards lean toward the pointer, with lamplight glare */
+if(FINE&&!RM){ $$('.way,.xp,.vcard-img').forEach(c=>{ c.classList.add('tilt'); if(!$('.glare',c)){ const g=document.createElement('i'); g.className='glare'; (c.classList.contains('way')?$('.way-img',c):c).appendChild(g); } });
+  document.addEventListener('pointermove',e=>{ const c=e.target.closest&&e.target.closest('.tilt'); $$('.tilt').forEach(x=>{ if(x!==c&&x.style.transform){ x.style.transform=''; } }); if(!c) return;
+    const r=c.getBoundingClientRect(), px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height; c.style.transform=`perspective(1000px) rotateY(${((px-.5)*8).toFixed(2)}deg) rotateX(${((.5-py)*7).toFixed(2)}deg)`;
+    const g=$('.glare',c); if(g){ g.style.setProperty('--gx',(px*100).toFixed(1)+'%'); g.style.setProperty('--gy',(py*100).toFixed(1)+'%'); } },{passive:true}); }
+
+/* the plan of the palace draws itself, then the venues light up */
+(function(){ const s=$('#planSvg'); const lines=$$('.w,.w2',s); lines.forEach(l=>{ l.setAttribute('pathLength','1'); if(!RM) l.style.setProperty('--do','1'); }); const spots=$$('.spot',s); if(!RM) spots.forEach(x=>x.style.opacity=0);
+  new IntersectionObserver((es,o)=>{ if(!es[0].isIntersecting||RM) return; o.disconnect();
+    lines.forEach((l,i)=>l.animate([{strokeDashoffset:1},{strokeDashoffset:0}],{duration:1600,delay:i*70,easing:'cubic-bezier(.65,0,.35,1)',fill:'forwards'}));
+    spots.forEach((x,i)=>x.animate([{opacity:0,transform:'scale(0)'},{opacity:1,transform:'scale(1)'}],{duration:700,delay:1100+i*160,easing:'cubic-bezier(.34,1.56,.64,1)',fill:'forwards'}).onfinish=()=>x.style.opacity=1); },{threshold:.12}).observe(s); })();
+
+/* the phone's plan fills in, one ceremony at a time */
+(function(){ const li=$$('.ph-list li'); new IntersectionObserver((es,o)=>{ if(!es[0].isIntersecting) return; o.disconnect(); li.forEach((l,i)=>setTimeout(()=>l.classList.add('on'),RM?0:400+i*420)); },{threshold:.4}).observe($('.phone')); })();
+
+/* the footer name, letter by letter */
+(function(){ const w=$('.ft-word'); const hi=$('.hi',w).outerHTML; w.innerHTML=hi+[...'VARNAGARH'].map(c=>`<span class="l">${c}</span>`).join('');
+  new IntersectionObserver((es,o)=>{ if(!es[0].isIntersecting||RM) return; o.disconnect(); $$('.l',w).forEach((l,i)=>l.animate([{transform:'translateY(60%) rotate(10deg)',opacity:0},{transform:'none',opacity:1}],{duration:1300,delay:i*70,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'})); },{threshold:.3}).observe(w); })();
+
+/* wedding dates left this season, from the same calendar the planner uses */
+(function(){ const now=new Date(); now.setHours(0,0,0,0); let n=0; for(let d=new Date(now);d<addDays(now,120);d=addDays(d,1)){ if([10,11,0,1].includes(d.getMonth())&&!taken(d)&&[5,6].includes(d.getDay())) n++; }
+  $('#pillN').textContent=`${n} weekend dates`; })();
+
+/* sparks follow the cursor through the lamplit rooms */
+if(FINE&&!RM){ const pool=[...Array(18)].map(()=>{ const s=document.createElement('i'); s.className='spark'; s.style.opacity=0; document.body.appendChild(s); return s; }); let k=0,last=0;
+  addEventListener('pointermove',e=>{ const t=e.target; if(!(t.closest&&t.closest('.night,.film,.coda'))||current) return; const now=performance.now(); if(now-last<28) return; last=now; const s=pool[k++%pool.length];
+    s.getAnimations().forEach(a=>a.cancel()); const dx=(Math.random()-.5)*40, dy=20+Math.random()*40;
+    s.animate([{transform:`translate(${e.clientX}px,${e.clientY}px) scale(1)`,opacity:1},{transform:`translate(${e.clientX+dx}px,${e.clientY-dy}px) scale(0)`,opacity:0}],{duration:900+Math.random()*500,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'}); },{passive:true}); }
+
+/* hide the pill inside the app screens */
+const _show=show; show=function(v,s,f){ _show(v,s,f); $('#pill').classList.toggle('on',false); };
+
 syncDot(); corrSize(); dockSync();
 })();
 </script>
